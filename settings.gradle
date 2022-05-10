@@ -8,3 +8,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MaxShop"
 include ':app'
+include ':shop-domain'
+include ':shop-data'
+include ':shop-ui'
