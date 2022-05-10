@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.maxshop.viewModel.CategoriesViewModel" />
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        app:onRefreshListener="@{() -> viewModel.getProducts()}"
+        app:refreshing="@{viewModel.progressBar}">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_category"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/normal_100"
+            tools:listitem="@layout/item_category" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>
