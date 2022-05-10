@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_view_category_error_header">Something went wrong</string>
+    <string name="text_view_category_error_description">Try again</string>
+    <string name="toast_open_sale_notification">Open sale notification</string>
+</resources>

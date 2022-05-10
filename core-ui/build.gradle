@@ -1,0 +1,62 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 26
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    // RxJava 2
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    // Picasso
+    api "com.squareup.picasso:picasso:$picasso_version"
+
+    // RefreshLayout
+    api "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_to_refresh_version"
+
+    // CardView
+    api "androidx.core:core-ktx:$core_ktx_version"
+    api "androidx.appcompat:appcompat:$appcompat_version"
+
+    api "androidx.fragment:fragment-ktx:$ragment_ktx_version"
+    api "androidx.appcompat:appcompat:$appcompat_version"
+    api "com.google.android.material:material:$material_version"
+    api "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+}

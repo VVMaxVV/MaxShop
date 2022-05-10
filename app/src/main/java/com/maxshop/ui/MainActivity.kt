@@ -2,17 +2,19 @@ package com.maxshop.ui
 
 import android.os.Bundle
 import com.example.maxshop.R
-import com.maxshop.shop_ui.ShopFragment
-import dagger.android.DaggerActivity
-import javax.inject.Inject
+import com.example.maxshop.databinding.ActivityMainBinding
+import com.maxshop.fragment.CategoriesFragment
+import dagger.android.support.DaggerAppCompatActivity
 
-class MainActivity : DaggerActivity() {
-    @Inject
-    lateinit var shopFragment: ShopFragment
+class MainActivity : DaggerAppCompatActivity() {
+    var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        shopFragment.test()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding?.fragmentContainer?.let {
+            supportFragmentManager.beginTransaction().replace(it.id, CategoriesFragment()).commit()
+        }
     }
 }

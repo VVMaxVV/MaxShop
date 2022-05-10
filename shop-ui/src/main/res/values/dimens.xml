@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_margin_horizontal">16dp</dimen>
+
+    <dimen name="match_constraint">0dp</dimen>
+
+    <dimen name="normal_0">0dp</dimen>
+
+    <dimen name="normal_6">1dp</dimen>
+    <dimen name="normal_12">2dp</dimen>
+
+    <dimen name="normal_25">4dp</dimen>
+    <dimen name="normal_50">8dp</dimen>
+    <dimen name="normal_60">10dp</dimen>
+    <dimen name="normal_75">12dp</dimen>
+    <dimen name="normal_100">16dp</dimen>
+
+    <dimen name="normal_125">20dp</dimen>
+    <dimen name="normal_150">24dp</dimen>
+    <dimen name="normal_175">28dp</dimen>
+    <dimen name="normal_200">32dp</dimen>
+
+    <dimen name="normal_225">36dp</dimen>
+    <dimen name="normal_250">40dp</dimen>
+    <dimen name="normal_275">44dp</dimen>
+    <dimen name="normal_300">48dp</dimen>
+
+    <dimen name="normal_325">52dp</dimen>
+    <dimen name="normal_350">56dp</dimen>
+    <dimen name="normal_375">60dp</dimen>
+    <dimen name="normal_400">64dp</dimen>
+
+    <dimen name="normal_425">68dp</dimen>
+    <dimen name="normal_450">72dp</dimen>
+    <dimen name="normal_475">76dp</dimen>
+    <dimen name="normal_500">80dp</dimen>
+
+    <dimen name="normal_525">84dp</dimen>
+    <dimen name="normal_550">88dp</dimen>
+    <dimen name="normal_575">92dp</dimen>
+    <dimen name="normal_600">96dp</dimen>
+
+    <dimen name="normal_625">100dp</dimen>
+    <dimen name="normal_650">104dp</dimen>
+    <dimen name="normal_675">108dp</dimen>
+    <dimen name="normal_700">112dp</dimen>
+
+    <dimen name="normal_725">116dp</dimen>
+    <dimen name="normal_750">120dp</dimen>
+    <dimen name="normal_775">124dp</dimen>
+    <dimen name="normal_800">128dp</dimen>
+
+    <dimen name="normal_1250">200dp</dimen>
+
+    <dimen name="dimen_item_category_text_size">18sp</dimen>
+    <dimen name="item_category_error_main_text_size">40sp</dimen>
+    <dimen name="item_category_error_secondary_text_size">35sp</dimen>
+    <dimen name="item_notification_main_text_size">24sp</dimen>
+    <dimen name="item_notification_secondary_text_size">14sp</dimen>
+</resources>

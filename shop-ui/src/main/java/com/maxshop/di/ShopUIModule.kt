@@ -2,5 +2,13 @@ package com.maxshop.di
 
 import dagger.Module
 
-@Module
-class ShopUIModule
+@Module(
+    includes =
+    [
+        ShopDomainModule::class,
+        ShopDataModule::class,
+        FragmentModule::class,
+        ViewModelModule::class
+    ]
+)
+interface ShopUIModule
