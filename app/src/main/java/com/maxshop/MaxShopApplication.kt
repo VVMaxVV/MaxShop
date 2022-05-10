@@ -5,9 +5,7 @@ import com.maxshop.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
-import dagger.android.support.DaggerApplication
 import javax.inject.Inject
-
 
 class MaxShopApplication : Application(), HasAndroidInjector {
     @Inject

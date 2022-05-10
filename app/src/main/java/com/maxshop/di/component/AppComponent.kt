@@ -1,6 +1,5 @@
 package com.maxshop.di.component
 
-import android.app.Application
 import android.content.Context
 import com.maxshop.MaxShopApplication
 import com.maxshop.di.ActivityModule

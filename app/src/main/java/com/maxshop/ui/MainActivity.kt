@@ -1,6 +1,5 @@
 package com.maxshop.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.maxshop.R
 import com.maxshop.shop_ui.ShopFragment
