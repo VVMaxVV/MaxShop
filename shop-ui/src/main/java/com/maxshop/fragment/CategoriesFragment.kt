@@ -7,14 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.maxshop.adapter.CategoryAdapter
+import com.maxshop.adapter.DataBindingRecyclerAdapter
 import com.maxshop.adapter.VerticalSpaceItemDecoration
+import com.maxshop.mapper.CategoryMapper
 import com.maxshop.shop_ui.R
 import com.maxshop.shop_ui.databinding.FragmentCategoriesBinding
 import com.maxshop.viewModel.CategoriesViewModel
+import javax.inject.Inject
 
 class CategoriesFragment : BaseFragment() {
     val viewModel: CategoriesViewModel by viewModels { factory }
+
+    @Inject
+    lateinit var categoryMapper: CategoryMapper
 
     private var binding: FragmentCategoriesBinding? = null
 
@@ -38,7 +43,7 @@ class CategoriesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = binding?.recyclerViewCategory
-        val adapter = CategoryAdapter()
+        val adapter = DataBindingRecyclerAdapter()
         recyclerView?.let {
             it.addItemDecoration(
                 VerticalSpaceItemDecoration(
@@ -54,7 +59,11 @@ class CategoriesFragment : BaseFragment() {
         }
 
         viewModel.categoriesLiveData.observe(viewLifecycleOwner) {
-            adapter.addData(it)
+            adapter.submitList(
+                it.map {
+                    categoryMapper.toRecyclerItem(it)
+                }
+            )
         }
         viewModel.getProducts()
 
