@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="category"
+            type="com.maxshop.viewState.CategoryViewState" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normal_625"
+        android:background="@android:color/transparent"
+        android:onClick="@{()->category.onProductClick(category.name)}"
+        android:layout_marginHorizontal="@dimen/normal_100"
+        app:cardCornerRadius="@dimen/normal_50"
+        app:cardElevation="@dimen/normal_50"
+        tools:layout_marginVertical="16dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/normal_625"
+            android:background="@android:color/white"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/normal_150"
+                android:text="@{category.name}"
+                android:textSize="@dimen/sp_normal_125"
+                android:textStyle="bold"
+                tools:text="New" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@{category.url}"
+                app:layout_constraintDimensionRatio="H,17:10"
+                tools:src="@android:color/black" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>
