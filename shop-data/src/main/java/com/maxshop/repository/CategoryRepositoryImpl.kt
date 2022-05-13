@@ -11,7 +11,7 @@ internal class CategoryRepositoryImpl @Inject constructor(
     private val categoryFactory: CategoryFactory
 ) : CategoryRepository {
     override fun getAllCategories(): Single<List<Category>> {
-        return categoryApi.getCategoryList().map {
+        return categoryApi.getCategories().map {
             it.map {
                 categoryFactory.get(it)
             }

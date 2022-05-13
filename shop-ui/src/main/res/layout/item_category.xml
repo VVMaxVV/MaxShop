@@ -32,7 +32,7 @@
                 android:gravity="center_vertical"
                 android:paddingStart="@dimen/normal_150"
                 android:text="@{category.name}"
-                android:textSize="@dimen/dimen_item_category_text_size"
+                android:textSize="@dimen/sp_normal_125"
                 android:textStyle="bold"
                 tools:text="New" />
 

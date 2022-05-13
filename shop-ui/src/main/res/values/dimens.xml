@@ -52,9 +52,49 @@
 
     <dimen name="normal_1250">200dp</dimen>
 
-    <dimen name="dimen_item_category_text_size">18sp</dimen>
-    <dimen name="item_category_error_main_text_size">40sp</dimen>
-    <dimen name="item_category_error_secondary_text_size">35sp</dimen>
-    <dimen name="item_notification_main_text_size">24sp</dimen>
-    <dimen name="item_notification_secondary_text_size">14sp</dimen>
+    <dimen name="sp_normal_0">0sp</dimen>
+
+    <dimen name="sp_normal_6">1sp</dimen>
+    <dimen name="sp_normal_12">2sp</dimen>
+
+    <dimen name="sp_normal_25">4sp</dimen>
+    <dimen name="sp_normal_50">8sp</dimen>
+    <dimen name="sp_normal_60">10sp</dimen>
+    <dimen name="sp_normal_75">12sp</dimen>
+    <dimen name="sp_normal_100">16sp</dimen>
+
+    <dimen name="sp_normal_125">20sp</dimen>
+    <dimen name="sp_normal_150">24sp</dimen>
+    <dimen name="sp_normal_175">28sp</dimen>
+    <dimen name="sp_normal_200">32sp</dimen>
+
+    <dimen name="sp_normal_225">36sp</dimen>
+    <dimen name="sp_normal_250">40sp</dimen>
+    <dimen name="sp_normal_275">44sp</dimen>
+    <dimen name="sp_normal_300">48sp</dimen>
+
+    <dimen name="sp_normal_325">52sp</dimen>
+    <dimen name="sp_normal_350">56sp</dimen>
+    <dimen name="sp_normal_375">60sp</dimen>
+    <dimen name="sp_normal_400">64sp</dimen>
+
+    <dimen name="sp_normal_425">68sp</dimen>
+    <dimen name="sp_normal_450">72sp</dimen>
+    <dimen name="sp_normal_475">76sp</dimen>
+    <dimen name="sp_normal_500">80sp</dimen>
+
+    <dimen name="sp_normal_525">84sp</dimen>
+    <dimen name="sp_normal_550">88sp</dimen>
+    <dimen name="sp_normal_575">92sp</dimen>
+    <dimen name="sp_normal_600">96sp</dimen>
+
+    <dimen name="sp_normal_625">100sp</dimen>
+    <dimen name="sp_normal_650">104sp</dimen>
+    <dimen name="sp_normal_675">108sp</dimen>
+    <dimen name="sp_normal_700">112sp</dimen>
+
+    <dimen name="sp_normal_725">116sp</dimen>
+    <dimen name="sp_normal_750">120sp</dimen>
+    <dimen name="sp_normal_775">124sp</dimen>
+    <dimen name="sp_normal_800">128sp</dimen>
 </resources>

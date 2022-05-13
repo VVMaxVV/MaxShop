@@ -7,5 +7,5 @@ import dagger.android.ContributesAndroidInjector
 @Module
 internal interface FragmentModule {
     @ContributesAndroidInjector
-    fun getCategoriesFragmet(): CategoriesFragment
+    fun provideCategoriesFragment(): CategoriesFragment
 }

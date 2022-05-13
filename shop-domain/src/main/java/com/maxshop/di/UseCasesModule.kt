@@ -8,5 +8,5 @@ import dagger.Module
 @Module
 internal interface UseCasesModule {
     @Binds
-    fun getAllCategoriesUseCase(impl: GetCategoriesUseCaseImpl): GetCategoriesUseCase
+    fun provideGetCategoriesUseCase(impl: GetCategoriesUseCaseImpl): GetCategoriesUseCase
 }

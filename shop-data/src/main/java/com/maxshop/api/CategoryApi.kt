@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 internal interface CategoryApi {
     @GET("/products/categories")
-    fun getCategoryList(): Single<List<String>>
+    fun getCategories(): Single<List<String>>
 }

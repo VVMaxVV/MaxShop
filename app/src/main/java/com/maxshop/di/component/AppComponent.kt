@@ -4,7 +4,7 @@ import android.content.Context
 import com.maxshop.MaxShopApplication
 import com.maxshop.di.ActivityModule
 import com.maxshop.di.CoreModule
-import com.maxshop.di.ShopUIModule
+import com.maxshop.di.ShopModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -18,7 +18,7 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         AndroidSupportInjectionModule::class,
         ActivityModule::class,
-        ShopUIModule::class,
+        ShopModule::class,
         CoreModule::class
     ]
 )

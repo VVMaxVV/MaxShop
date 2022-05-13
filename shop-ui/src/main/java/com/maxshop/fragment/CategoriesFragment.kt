@@ -63,7 +63,7 @@ class CategoriesFragment : BaseFragment() {
                 is CategoriesViewModel.CategoryEvents.OpenCategoryProductListEvents
                 -> openProducts(it.categoryName)
                 is CategoriesViewModel.CategoryEvents.ToastCategoryEvents
-                -> toast(it.text)
+                -> showToastMessage(it.text)
                 is CategoriesViewModel.CategoryEvents.ReceivedThrowable
                 -> Log.e(CategoriesFragment::class.java.name, "${it.throwable.message}")
             }
@@ -71,6 +71,6 @@ class CategoriesFragment : BaseFragment() {
     }
 
     private fun openProducts(categoryName: String) {
-        toast("Open category $categoryName")
+        showToastMessage("Open category $categoryName")
     }
 }

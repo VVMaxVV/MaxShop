@@ -8,7 +8,7 @@ import javax.inject.Inject
 class CategoryMapper @Inject constructor() {
     fun toViewState(category: Category): BaseViewState {
         return CategoryViewState(
-            category.categoryName,
+            category.name,
             category.imageUrl
         )
     }

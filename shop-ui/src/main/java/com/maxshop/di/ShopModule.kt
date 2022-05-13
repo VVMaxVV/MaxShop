@@ -11,4 +11,4 @@ import dagger.Module
         ViewModelModule::class
     ]
 )
-interface ShopUIModule
+interface ShopModule

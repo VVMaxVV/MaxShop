@@ -8,5 +8,5 @@ import dagger.Module
 @Module
 internal interface RepositoryModule {
     @Binds
-    fun getCategoryRepository(impl: CategoryRepositoryImpl): CategoryRepository
+    fun provideCategoryRepository(impl: CategoryRepositoryImpl): CategoryRepository
 }
