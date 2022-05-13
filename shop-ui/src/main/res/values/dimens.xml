@@ -70,31 +70,4 @@
 
     <dimen name="sp_normal_225">36sp</dimen>
     <dimen name="sp_normal_250">40sp</dimen>
-    <dimen name="sp_normal_275">44sp</dimen>
-    <dimen name="sp_normal_300">48sp</dimen>
-
-    <dimen name="sp_normal_325">52sp</dimen>
-    <dimen name="sp_normal_350">56sp</dimen>
-    <dimen name="sp_normal_375">60sp</dimen>
-    <dimen name="sp_normal_400">64sp</dimen>
-
-    <dimen name="sp_normal_425">68sp</dimen>
-    <dimen name="sp_normal_450">72sp</dimen>
-    <dimen name="sp_normal_475">76sp</dimen>
-    <dimen name="sp_normal_500">80sp</dimen>
-
-    <dimen name="sp_normal_525">84sp</dimen>
-    <dimen name="sp_normal_550">88sp</dimen>
-    <dimen name="sp_normal_575">92sp</dimen>
-    <dimen name="sp_normal_600">96sp</dimen>
-
-    <dimen name="sp_normal_625">100sp</dimen>
-    <dimen name="sp_normal_650">104sp</dimen>
-    <dimen name="sp_normal_675">108sp</dimen>
-    <dimen name="sp_normal_700">112sp</dimen>
-
-    <dimen name="sp_normal_725">116sp</dimen>
-    <dimen name="sp_normal_750">120sp</dimen>
-    <dimen name="sp_normal_775">124sp</dimen>
-    <dimen name="sp_normal_800">128sp</dimen>
 </resources>

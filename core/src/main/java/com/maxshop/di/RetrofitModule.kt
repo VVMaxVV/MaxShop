@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 @Module
 internal class RetrofitModule {
     @Provides
-    fun getRetrofit(client: OkHttpClient) = Retrofit.Builder()
+    fun provideRetrofit(client: OkHttpClient) = Retrofit.Builder()
         .baseUrl("https://fakestoreapi.com")
         .client(client)
         .addConverterFactory(GsonConverterFactory.create())
@@ -20,12 +20,12 @@ internal class RetrofitModule {
         .build()
 
     @Provides
-    fun getClient(interceptor: HttpLoggingInterceptor) = OkHttpClient.Builder()
+    fun provideClient(interceptor: HttpLoggingInterceptor) = OkHttpClient.Builder()
         .readTimeout(60, TimeUnit.SECONDS)
         .connectTimeout(60, TimeUnit.SECONDS)
         .addInterceptor(interceptor).build()
 
     @Provides
-    fun getLoggerInterceptor() =
+    fun provideLoggerInterceptor() =
         HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
 }
