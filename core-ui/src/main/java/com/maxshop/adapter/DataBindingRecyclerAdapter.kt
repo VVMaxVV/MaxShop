@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.ListAdapter
 import com.maxshop.adapter.callback.DiffCallback
 import com.maxshop.adapter.viewHolder.BindingViewHolder
@@ -17,6 +18,7 @@ class DataBindingRecyclerAdapter : ListAdapter<RecyclerItem, BindingViewHolder>(
         val inflater = LayoutInflater.from(parent.context)
         val binding: ViewDataBinding =
             DataBindingUtil.inflate(inflater, viewType, parent, false)
+        binding.lifecycleOwner = parent.findViewTreeLifecycleOwner()
         return BindingViewHolder(binding)
     }
 
@@ -32,11 +34,5 @@ class DataBindingRecyclerAdapter : ListAdapter<RecyclerItem, BindingViewHolder>(
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return getItem(position).layoutId
-    }
-
-    fun addAll(itemsList: List<RecyclerItem>) {
-        submitList(itemsList)
-    }
+    override fun getItemViewType(position: Int) = getItem(position).layoutId
 }
