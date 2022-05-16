@@ -1,4 +1,7 @@
 ext {
+    // Navigation
+    nav_version = "2.4.2"
+
     // Dagger
     dagger_version = '2.40.5'
     core_ktx_version = '1.7.0'

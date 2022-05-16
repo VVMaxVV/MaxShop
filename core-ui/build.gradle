@@ -36,6 +36,10 @@ android {
 }
 
 dependencies {
+    // Navigation
+    api "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    api "androidx.navigation:navigation-ui-ktx:$nav_version"
+
     // RxJava 2
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
 
