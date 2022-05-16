@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.internetshop.presentation.utils.SingleLiveEvent
 import com.maxshop.mapper.CategoryMapper
 import com.maxshop.usecase.GetCategoriesUseCase
-import com.maxshop.viewState.BaseViewState
+import com.maxshop.viewState.CategoryViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
@@ -16,7 +16,7 @@ class CategoriesViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val events = SingleLiveEvent<CategoryEvents>()
-    val categoriesLiveData = MutableLiveData<List<BaseViewState>>()
+    val categoriesLiveData = MutableLiveData<List<CategoryViewState>>()
     val progressBar = MutableLiveData<Boolean>()
 
     fun getProducts() {
@@ -35,7 +35,7 @@ class CategoriesViewModel @Inject constructor(
                             compositeDisposable.add(
                                 it.events.subscribe {
                                     when (it) {
-                                        is BaseViewState.Event.OnProductClick -> {
+                                        is CategoryViewState.Event.OnProductClick -> {
                                             events.value =
                                                 CategoryEvents.OpenCategoryProductListEvents(it.name)
                                         }
