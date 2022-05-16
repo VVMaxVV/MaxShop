@@ -43,7 +43,6 @@ class CategoriesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = binding?.recyclerViewCategory
-        val adapter = DataBindingRecyclerAdapter()
         recyclerView?.let {
             it.addItemDecoration(
                 VerticalSpaceItemDecoration(
@@ -53,27 +52,19 @@ class CategoriesFragment : BaseFragment() {
                         .toInt()
                 )
             )
-            it.adapter = adapter
+            it.adapter = DataBindingRecyclerAdapter()
             it.layoutManager = LinearLayoutManager(requireContext())
-            it.setHasFixedSize(true)
         }
 
-        viewModel.categoriesLiveData.observe(viewLifecycleOwner) {
-            adapter.submitList(
-                it.map {
-                    categoryMapper.toRecyclerItem(it)
-                }
-            )
-        }
         viewModel.getProducts()
 
         viewModel.events.observe(viewLifecycleOwner) {
             when (it) {
-                is CategoriesViewModel.CategoryEvents.OpenCategoryProductListEvents
+                is CategoriesViewModel.Event.OpenEvent
                 -> openProducts(it.categoryName)
-                is CategoriesViewModel.CategoryEvents.ToastCategoryEvents
+                is CategoriesViewModel.Event.ToastEvent
                 -> showToastMessage(it.text)
-                is CategoriesViewModel.CategoryEvents.ReceivedThrowable
+                is CategoriesViewModel.Event.ReceivedThrowableEvent
                 -> Log.e(CategoriesFragment::class.java.name, "${it.throwable.message}")
             }
         }
