@@ -26,6 +26,10 @@ fun setVisibility(view: View, visible: Boolean) {
 
 @BindingAdapter("items")
 fun setItems(view: RecyclerView, items: List<RecyclerItem>?) {
-    val adapter = view.adapter as DataBindingRecyclerAdapter
+    var adapter = view.adapter as? DataBindingRecyclerAdapter
+    if (adapter == null) {
+        adapter = DataBindingRecyclerAdapter()
+        view.adapter = adapter
+    }
     adapter.submitList(items)
 }

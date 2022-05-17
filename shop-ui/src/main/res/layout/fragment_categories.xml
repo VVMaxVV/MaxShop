@@ -9,6 +9,8 @@
             name="viewModel"
             type="com.maxshop.viewModel.CategoriesViewModel" />
 
+        <import type="com.maxshop.adapter.Decorations"/>
+
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -20,7 +22,9 @@
         app:refreshing="@{viewModel.progressBar}">
 
         <androidx.recyclerview.widget.RecyclerView
+            app:addItemDecoration="@{Decorations.spaces(@dimen/normal_100, true)}"
             android:id="@+id/recycler_view_category"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             items="@{viewModel.categories}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
