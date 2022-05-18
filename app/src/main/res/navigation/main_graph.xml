@@ -2,7 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_graph"
-    app:startDestination="@id/tab_category">
+    app:startDestination="@id/tab_shop">
 
-    <include app:graph="@navigation/category_graph"/>
+    <include app:graph="@navigation/home_graph" />
+    <include app:graph="@navigation/shop_graph" />
+    <include app:graph="@navigation/bag_graph" />
+    <include app:graph="@navigation/favorite_graph" />
+    <include app:graph="@navigation/profile_graph" />
 </navigation>
