@@ -1,13 +1,16 @@
 package com.maxshop.viewModel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.internetshop.presentation.utils.SingleLiveEvent
 import com.maxshop.mapper.CategoryMapper
+import com.maxshop.model.RecyclerItem
 import com.maxshop.usecase.GetCategoriesUseCase
 import com.maxshop.viewState.CategoryViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.plusAssign
+import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class CategoriesViewModel @Inject constructor(
@@ -15,47 +18,59 @@ class CategoriesViewModel @Inject constructor(
     private val categoryMapper: CategoryMapper
 ) : BaseViewModel() {
 
-    val events = SingleLiveEvent<CategoryEvents>()
-    val categoriesLiveData = MutableLiveData<List<CategoryViewState>>()
+    private val _events = SingleLiveEvent<Event>()
+    val events: LiveData<Event> get() = _events
+
+    private val _categories = MutableLiveData<List<RecyclerItem>>()
+    val categories: LiveData<List<RecyclerItem>> get() = _categories
+
     val progressBar = MutableLiveData<Boolean>()
 
     fun getProducts() {
-        getCategoriesUseCase.execute()
-            .timeout(60, TimeUnit.SECONDS)
+        compositeDisposable += getCategoriesUseCase.execute()
             .subscribeOn(Schedulers.io())
+            .map {
+                it.map {
+                    categoryMapper.toViewState(it).also {
+                        compositeDisposable += it.events.subscribeBy(
+                            onNext = {
+                                onCategoryViewStateEvent(it)
+                            }
+                        )
+                    }
+                }
+            }
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { progressBar.value = true }
-            .doFinally {
-                progressBar.value = false
-            }
-            .subscribe(
-                { it ->
-                    categoriesLiveData.value = it.map {
-                        categoryMapper.toViewState(it).also {
-                            compositeDisposable.add(
-                                it.events.subscribe {
-                                    when (it) {
-                                        is CategoryViewState.Event.OnProductClick -> {
-                                            events.value =
-                                                CategoryEvents.OpenCategoryProductListEvents(it.name)
-                                        }
-                                    }
-                                }
-                            )
-                        }
+            .doFinally { progressBar.value = false }
+            .subscribeBy(
+                onSuccess = {
+                    _categories.value = it.map {
+                        categoryMapper.toRecyclerItem(it)
                     }
                 },
-                {
-                    events.value =
-                        CategoryEvents.ReceivedThrowable(it, "GetCategoriesUseCase Throwable")
+                onError = {
+                    _events.value =
+                        Event.OnError(it, "GetCategoriesUseCase Throwable")
                 }
-            ).run(compositeDisposable::add)
+            )
     }
 
-    sealed class CategoryEvents {
-        data class OpenCategoryProductListEvents(val categoryName: String) : CategoryEvents()
-        data class ToastCategoryEvents(val text: String) : CategoryEvents()
-        data class ReceivedThrowable(val throwable: Throwable, val description: String? = null) :
-            CategoryEvents()
+    private fun onCategoryViewStateEvent(event: CategoryViewState.Event) {
+        when (event) {
+            is CategoryViewState.Event.OnProductClick -> {
+                _events.value =
+                    Event.OpenCategory(event.name)
+            }
+        }
+    }
+
+    sealed class Event {
+        data class OpenCategory(val categoryName: String) : Event()
+        data class ShowToast(val text: String) : Event()
+        data class OnError(
+            val throwable: Throwable,
+            val description: String? = null
+        ) : Event()
     }
 }
