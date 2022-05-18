@@ -4,32 +4,32 @@
     <item
         android:id="@+id/tab_home"
         android:enabled="true"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/selector_ic_home"
         android:title="@string/label_home"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/tab_shop"
         android:enabled="true"
-        android:icon="@drawable/ic_shop"
+        android:icon="@drawable/selector_ic_shop"
         android:title="@string/label_shop"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/tab_bag"
         android:enabled="true"
-        android:icon="@drawable/ic_bag"
+        android:icon="@drawable/selector_ic_bag"
         android:title="@string/label_bag"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/tab_favorite"
         android:enabled="true"
-        android:icon="@drawable/ic_favorite"
+        android:icon="@drawable/selector_ic_favorites"
         android:title="@string/label_favorites"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/tab_profile"
         android:enabled="true"
-        android:icon="@drawable/ic_profile"
+        android:icon="@drawable/selector_ic_profile"
         android:title="@string/label_profile"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
 
 </menu>

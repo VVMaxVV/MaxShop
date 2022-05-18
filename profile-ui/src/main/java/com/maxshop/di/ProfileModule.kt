@@ -8,4 +8,3 @@ import dagger.Module
     ]
 )
 interface ProfileModule
-
