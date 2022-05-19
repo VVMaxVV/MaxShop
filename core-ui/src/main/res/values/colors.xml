@@ -8,4 +8,14 @@
     <color name="colorError">#F01F0E</color>
     <color name="colorSuccess">#2AA952</color>
     <color name="colorSale">#DB3022</color>
+
+    <color name="nightColorWhite">#F6F6F6</color>
+    <color name="nightColorGray">#ABB4BD</color>
+    <color name="nightColorPrimary">#EF3651</color>
+    <color name="nightColorBackground">#1E1F28</color>
+    <color name="nightColorDark">#2A2C36</color>
+    <color name="nightColorError">#FF2424</color>
+    <color name="nightColorSuccess">#55D85A</color>
+    <color name="nightColorSale">#FF3E3E</color>
+    <color name="nightColorOrdinary">#F5F5F5</color>
 </resources>

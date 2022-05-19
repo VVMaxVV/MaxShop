@@ -2,10 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.MaxShop" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/nightColorPrimary</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorAccent">@color/colorBlack</item>
+        <item name="colorAccent">@color/nightColorWhite</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@android:color/transparent</item>
@@ -14,9 +14,12 @@
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/colorBackground</item>
-        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:windowBackground">@color/nightColorBackground</item>
+        <item name="android:textColor">@color/nightColorWhite</item>
         <item name="fontFamily">@font/metropolis_regular</item>
+
+        <item name="recyclerViewStyle">@style/BaseRecyclerView</item>
+        <item name="android:textViewStyle">@style/CategoryNameTextView</item>
     </style>
 
 </resources>
