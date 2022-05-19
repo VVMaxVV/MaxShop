@@ -1,6 +1,7 @@
 package com.maxshop.ui
 
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.maxshop.R
@@ -12,8 +13,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
         val navController = navHostFragment.navController

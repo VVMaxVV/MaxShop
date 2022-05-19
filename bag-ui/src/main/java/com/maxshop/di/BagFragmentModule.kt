@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-internal interface BagFragmentModel {
+internal interface BagFragmentModule {
     @ContributesAndroidInjector
     fun provideBagFragment(): BagFragment
 }
