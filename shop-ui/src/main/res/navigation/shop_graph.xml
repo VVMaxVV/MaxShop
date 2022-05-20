@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tab_category"
+    android:id="@+id/tab_shop"
     app:startDestination="@id/categoriesFragment">
 
     <fragment

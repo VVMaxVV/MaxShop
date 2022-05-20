@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -36,9 +37,14 @@ android {
 }
 
 dependencies {
-    implementation project(':shop-ui')
     implementation project(':core')
     implementation project(':core-ui')
+
+    implementation project(':home-ui')
+    implementation project(':shop-ui')
+    implementation project(':bag-ui')
+    implementation project(':favorite-ui')
+    implementation project(':profile-ui')
 
     // Dagger
     kapt "com.google.dagger:dagger-compiler:$dagger_version"

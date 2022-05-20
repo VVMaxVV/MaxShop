@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MaxShop</string>
+    <string name="label_shop">Shop</string>
+    <string name="label_home">Home</string>
+    <string name="label_bag">Bag</string>
+    <string name="label_favorites">Favorites</string>
+    <string name="label_profile">Profile</string>
+    <string name="label_auth">Auth</string>
 </resources>

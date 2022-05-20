@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-internal interface FragmentModule {
+internal interface ShopFragmentModule {
     @ContributesAndroidInjector
     fun provideCategoriesFragment(): CategoriesFragment
 }

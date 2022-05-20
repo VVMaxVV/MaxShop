@@ -7,7 +7,7 @@ import dagger.Module
     [
         ShopDomainModule::class,
         ShopDataModule::class,
-        FragmentModule::class,
+        ShopFragmentModule::class,
         ViewModelModule::class
     ]
 )
