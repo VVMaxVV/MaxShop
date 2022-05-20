@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorTeal_200">#FF03DAC5</color>
-    <color name="colorTeal_700">#FF018786</color>
-    <color name="colorBlack">#FF000000</color>
-    <color name="colorWhite">#FFFFFFFF</color>
-    <color name="colorRed">#DB3022</color>
-    <color name="colorBackground">#F9F9F9</color>
+    <color name="colorBlack">#222222</color>
     <color name="colorGray">#9B9B9B</color>
+    <color name="colorPrimary">#DB3022</color>
+    <color name="colorBackground">#F9F9F9</color>
+    <color name="colorWhite">#FFFFFFFF</color>
+    <color name="colorError">#F01F0E</color>
+    <color name="colorSuccess">#2AA952</color>
+    <color name="colorSale">#DB3022</color>
 </resources>
