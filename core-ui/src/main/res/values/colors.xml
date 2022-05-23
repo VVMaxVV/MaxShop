@@ -8,4 +8,9 @@
     <color name="colorError">#F01F0E</color>
     <color name="colorSuccess">#2AA952</color>
     <color name="colorSale">#DB3022</color>
+
+    <!-- Views colors -->
+    <color name="colorText">@color/colorBlack</color>
+    <color name="colorBackgroundCards">@color/colorWhite</color>
+    <color name="colorBottomNavMenu">@color/colorWhite</color>
 </resources>

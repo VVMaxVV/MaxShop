@@ -16,13 +16,13 @@
         android:background="@android:color/transparent"
         android:onClick="@{()->category.onProductClick(category.name)}"
         app:cardCornerRadius="@dimen/normal_50"
+        app:cardBackgroundColor="@color/colorBackgroundCards"
         app:cardElevation="@dimen/normal_50"
         tools:layout_marginVertical="16dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="@dimen/normal_625"
-            android:background="@android:color/white"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView

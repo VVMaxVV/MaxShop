@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorGray">#ABB4BD</color>
+    <color name="colorPrimary">#EF3651</color>
+    <color name="colorBackground">#1E1F28</color>
+
+    <!-- Views colors -->
+    <color name="colorText">#F6F6F6</color>
+    <color name="colorBackgroundCards">#2A2C36</color>
+    <color name="colorBottomNavMenu">#1E1F28</color>
+</resources>
