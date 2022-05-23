@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.maxshop.shop_ui.databinding.FragmentCategoriesBinding
 import com.maxshop.viewModel.CategoriesViewModel
 
@@ -46,6 +47,10 @@ class CategoriesFragment : BaseFragment() {
     }
 
     private fun openProducts(categoryName: String) {
-        showToastMessage("Open category $categoryName")
+        findNavController().navigate(
+            CategoriesFragmentDirections.actionCategoriesFragmentToProductsListFragment(
+                categoryName
+            )
+        )
     }
 }

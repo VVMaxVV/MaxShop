@@ -17,6 +17,7 @@
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="fontFamily">@font/metropolis_regular</item>
+        <item name="ratingBarStyle">@style/CustomRatingBar</item>
     </style>
 
 </resources>

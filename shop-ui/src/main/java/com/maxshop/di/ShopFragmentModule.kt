@@ -1,6 +1,7 @@
 package com.maxshop.di
 
 import com.maxshop.fragment.CategoriesFragment
+import com.maxshop.fragment.ProductsListFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -8,4 +9,7 @@ import dagger.android.ContributesAndroidInjector
 internal interface ShopFragmentModule {
     @ContributesAndroidInjector
     fun provideCategoriesFragment(): CategoriesFragment
+
+    @ContributesAndroidInjector
+    fun provideProductListFragment(): ProductsListFragment
 }

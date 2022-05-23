@@ -8,4 +8,9 @@
     <color name="colorText">#F6F6F6</color>
     <color name="colorBackgroundCards">#2A2C36</color>
     <color name="colorBottomNavMenu">#1E1F28</color>
+    <color name="colorIcons">#DADADA</color>
+    <color name="colorFilterBackground">#1E1F28</color>
+    <color name="colorFavoriteShadow">#303030</color>
+    <color name="colorFavoriteBackground">#2A2C36</color>
+    <color name="colorFavoritePrimary">#EF3651</color>
 </resources>
