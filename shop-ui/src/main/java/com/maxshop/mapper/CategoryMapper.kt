@@ -7,7 +7,7 @@ import com.maxshop.shop_ui.R
 import com.maxshop.viewState.CategoryViewState
 import javax.inject.Inject
 
-class CategoryMapper @Inject constructor() {
+internal class CategoryMapper @Inject constructor() {
     fun toViewState(category: Category) = CategoryViewState(
         category.name,
         category.imageUrl

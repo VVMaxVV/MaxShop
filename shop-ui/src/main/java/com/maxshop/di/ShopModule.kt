@@ -8,7 +8,7 @@ import dagger.Module
         ShopDomainModule::class,
         ShopDataModule::class,
         ShopFragmentModule::class,
-        ViewModelModule::class
+        ShopViewModelModule::class
     ]
 )
 interface ShopModule

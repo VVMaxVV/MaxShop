@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="price">%s$</string>
+    <string name="review_counter">(%s)</string>
+    
+    <string name="popular_label">Popular</string>
+    <string name="price_low_to_high_label">Price: lowest to high</string>
+    <string name="price_high_to_low_label">Price: highest to low</string>
+</resources>

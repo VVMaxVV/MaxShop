@@ -1,0 +1,30 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <vector
+            android:width="36dp"
+            android:height="36dp"
+            android:viewportWidth="40"
+            android:viewportHeight="40">
+            <group android:translateY="4">
+                <path
+                    android:fillColor="@color/colorFavoriteShadow"
+                    android:pathData="M22,18m-18,0a18,18 0,1 1,36 0a18,18 0,1 1,-36 0" />
+            </group>
+        </vector>
+    </item>
+    <item>
+        <vector
+            android:width="36dp"
+            android:height="36dp"
+            android:viewportWidth="40"
+            android:viewportHeight="40">
+            <path
+                android:fillColor="@color/colorFavoriteBackground"
+                android:pathData="M22,18m-18,0a18,18 0,1 1,36 0a18,18 0,1 1,-36 0" />
+            <path
+                android:fillColor="@color/colorFavoritePrimary"
+                android:fillType="evenOdd"
+                android:pathData="M21.5395,24L20.5913,23.1368C17.2234,20.0828 15,18.0687 15,15.5967C15,13.5826 16.5826,12 18.5967,12C19.7346,12 20.8267,12.5297 21.5395,13.3668C22.2523,12.5297 23.3444,12 24.4823,12C26.4965,12 28.079,13.5826 28.079,15.5967C28.079,18.0687 25.8556,20.0828 22.4877,23.1433L21.5395,24Z" />
+        </vector>
+    </item>
+</layer-list>

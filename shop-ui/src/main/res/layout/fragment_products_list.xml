@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.maxshop.viewModel.ProductsListViewModel" />
+
+        <import type="com.maxshop.adapter.Decorations" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/normal_150"
+            android:layout_marginHorizontal="@dimen/normal_100"
+            android:layout_marginVertical="@dimen/normal_125"
+            android:background="@color/colorFilterBackground"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sort_text_view"
+                style="@style/Regular_12sp"
+                android:layout_width="@dimen/normal_0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_arrow_two_way"
+                android:drawablePadding="@dimen/normal_125"
+                android:gravity="center_vertical"
+                android:onClick="@{()->viewModel.showSorts()}"
+                android:paddingStart="@dimen/normal_125"
+                android:text="@{viewModel.sort}"
+                tools:text="Price: lowest to high" />
+
+            <ToggleButton
+                style="@style/ToggleChangeDisplayItems"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/normal_12" />
+        </LinearLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/normal_100"
+            app:onRefreshListener="@{() -> viewModel.getProducts()}"
+            app:refreshing="@{viewModel.progressBar}"
+            tools:background="@color/colorBackground">
+
+            <androidx.recyclerview.widget.RecyclerView
+                items="@{viewModel.productsList}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:addItemDecoration="@{Decorations.spaces(@dimen/normal_100, true)}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_product_list" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
+</layout>

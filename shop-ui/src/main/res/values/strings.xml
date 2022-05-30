@@ -1,3 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="label_sort_by">Sort by</string>
+
+    <string name="sort_type_popular">Popular</string>
+    <string name="sort_type_price_lowest_to_high">Price: lowest to high</string>
+    <string name="sort_type_price_highest_to_low">Price: highest to low</string>
 </resources>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="product"
+            type="com.maxshop.viewState.PLPItemViewState" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normal_725"
+        android:background="@android:color/transparent"
+        tools:layout_marginBottom="@dimen/normal_100">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/normal_100"
+            android:elevation="@dimen/normal_150"
+            android:shadowRadius="25"
+            app:cardBackgroundColor="@color/colorBackgroundCards"
+            app:cardCornerRadius="@dimen/normal_50">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/itemSimpleProdId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:onClick="@{()->product.onClick(product)}">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/productImage"
+                    android:layout_width="@dimen/normal_650"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    android:src="@{product.imageUrl}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@color/colorBlack" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title"
+                    style="@style/SemiBold_16sp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/normal_100"
+                    android:layout_marginTop="@dimen/normal_75"
+                    android:ellipsize="end"
+                    android:lines="2"
+                    android:text="@{product.title}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/productImage"
+                    app:layout_constraintTop_toTopOf="@id/productImage"
+                    tools:text="Dorothy Perkins" />
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/CustomRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:rating="@{product.rating}"
+                    app:layout_constraintStart_toStartOf="@+id/title"
+                    app:layout_constraintTop_toBottomOf="@+id/title"
+                    tools:rating="3.7" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/numberOfReviews"
+                    style="@style/Regular_12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/review_counter(product.ratingCount)}"
+                    android:textColor="@color/colorGray"
+                    app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+                    app:layout_constraintStart_toEndOf="@+id/ratingBar"
+                    app:layout_constraintTop_toTopOf="@+id/ratingBar"
+                    tools:text="(10)" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/price"
+                    style="@style/Medium_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/normal_50"
+                    android:text="@{@string/price(product.price)}"
+                    app:layout_constraintStart_toStartOf="@+id/ratingBar"
+                    app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+                    tools:text="11$" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatToggleButton
+            style="@style/ToggleFavorite"
+            android:layout_width="@dimen/normal_225"
+            android:layout_height="@dimen/normal_225"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/normal_100"
+            android:checked="@{product.favorite}"
+            android:elevation="@dimen/normal_200"
+            android:onClick="@{()->product.onFavoriteClick(product)}" />
+    </FrameLayout>
+</layout>

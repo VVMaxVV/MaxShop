@@ -13,7 +13,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class CategoriesViewModel @Inject constructor(
+internal class CategoriesViewModel @Inject constructor(
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val categoryMapper: CategoryMapper
 ) : BaseViewModel() {

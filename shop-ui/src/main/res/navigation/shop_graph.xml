@@ -9,5 +9,30 @@
         android:id="@+id/categoriesFragment"
         android:name="com.maxshop.fragment.CategoriesFragment"
         android:label="CategoriesFragment"
-        tools:layout="@layout/fragment_categories"/>
+        tools:layout="@layout/fragment_categories">
+        <action
+            android:id="@+id/action_categoriesFragment_to_productsListFragment"
+            app:destination="@id/productsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productsListFragment"
+        android:name="com.maxshop.fragment.ProductsListFragment"
+        android:label="{category}"
+        tools:layout="@layout/fragment_products_list">
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_productsListFragment_to_bottomSheetSortFragment"
+            app:destination="@id/bottomSheetSortFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/bottomSheetSortFragment"
+        android:name="com.maxshop.fragment.SortsFragment"
+        android:label="BottomSheetSortFragment"
+        tools:layout="@layout/fragment_bottom_sheet_sort">
+        <argument
+            android:name="activeSort"
+            app:argType="com.maxshop.model.TypeSort" />
+    </dialog>
 </navigation>
