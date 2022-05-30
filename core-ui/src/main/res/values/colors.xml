@@ -11,6 +11,7 @@
 
     <!-- Views colors -->
     <color name="colorText">@color/colorBlack</color>
+    <color name="colorSecondaryText">@color/colorWhite</color>
     <color name="colorBackgroundCards">@color/colorWhite</color>
     <color name="colorBottomNavMenu">@color/colorWhite</color>
     <color name="colorIcons">#222222</color>
@@ -18,4 +19,5 @@
     <color name="colorFavoriteShadow">#ebebeb</color>
     <color name="colorFavoriteBackground">#FFFFFF</color>
     <color name="colorFavoritePrimary">#DB3022</color>
+    <color name="colorHeaderFragment">#FFFFFF</color>
 </resources>

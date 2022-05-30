@@ -35,7 +35,8 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/productImage"
                     android:layout_width="@dimen/normal_650"
-                    android:layout_height="@dimen/normal_650"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="1:1"
                     android:src="@{product.imageUrl}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -44,13 +45,14 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/title"
                     style="@style/SemiBold_16sp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_margin_horizontal"
+                    android:layout_marginHorizontal="@dimen/normal_100"
                     android:layout_marginTop="@dimen/normal_75"
                     android:ellipsize="end"
-                    android:maxLines="2"
+                    android:lines="2"
                     android:text="@{product.title}"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/productImage"
                     app:layout_constraintTop_toTopOf="@id/productImage"
                     tools:text="Dorothy Perkins" />
@@ -61,10 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:isIndicator="true"
-                    android:numStars="5"
                     android:rating="@{product.rating}"
-                    android:stepSize="0.1"
                     app:layout_constraintStart_toStartOf="@+id/title"
                     app:layout_constraintTop_toBottomOf="@+id/title"
                     tools:rating="3.7" />
@@ -102,7 +101,7 @@
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/normal_100"
             android:checked="@{product.favorite}"
-            android:elevation="@dimen/normal_100"
+            android:elevation="@dimen/normal_200"
             android:onClick="@{()->product.onFavoriteClick(product)}" />
     </FrameLayout>
 </layout>

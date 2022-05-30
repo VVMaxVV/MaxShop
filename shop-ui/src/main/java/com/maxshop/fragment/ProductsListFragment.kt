@@ -1,21 +1,18 @@
 package com.maxshop.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
-import com.maxshop.shop_ui.R
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.maxshop.model.TypeSort
 import com.maxshop.shop_ui.databinding.FragmentProductsListBinding
 import com.maxshop.viewModel.ProductsListViewModel
-import javax.inject.Inject
 
 class ProductsListFragment : BaseFragment() {
-    companion object {
-        const val EXTRA_CATEGORY_NAME = "category"
-    }
+    private val args: ProductsListFragmentArgs by navArgs()
 
     private var binding: FragmentProductsListBinding? = null
 
@@ -28,18 +25,32 @@ class ProductsListFragment : BaseFragment() {
     ): View? {
         binding = FragmentProductsListBinding.inflate(
             inflater, container, false
-        )
-            .apply {
-                viewModel = this@ProductsListFragment.viewModel
-                lifecycleOwner = this@ProductsListFragment
-            }
+        ).apply {
+            viewModel = this@ProductsListFragment.viewModel
+            lifecycleOwner = this@ProductsListFragment
+        }
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val categoryName = this.requireArguments().getString(EXTRA_CATEGORY_NAME)
+        viewModel.categoryName = args.category
 
-        viewModel.getProducts(categoryName ?: "Unknown error")
+        viewModel.getActiveSort()
+
+        viewModel.getProducts()
+
+        viewModel.event.observe(viewLifecycleOwner) {
+            when (it) {
+                is ProductsListViewModel.Event.ShowSorts -> findNavController().navigate(
+                    ProductsListFragmentDirections
+                        .actionProductsListFragmentToBottomSheetSortFragment(
+                            viewModel.sort.value ?: TypeSort.Error
+                        )
+                )
+                is ProductsListViewModel.Event.OpenProduct ->
+                    showToastMessage("Open product (id: ${it.id})")
+            }
+        }
     }
 }

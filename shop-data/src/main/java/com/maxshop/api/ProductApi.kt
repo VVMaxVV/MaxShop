@@ -7,7 +7,7 @@ import retrofit2.http.Path
 
 internal interface ProductApi {
     @GET("/products/category/{categoryName}")
-    fun getCategories(
+    fun getProducts(
         @Path("categoryName") categoryName: String
     ): Single<List<ProductResponse>>
 }

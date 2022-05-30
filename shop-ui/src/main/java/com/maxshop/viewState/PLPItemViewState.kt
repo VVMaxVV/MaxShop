@@ -38,10 +38,12 @@ class PLPItemViewState(
 
     override fun isSameContent(other: Any): Boolean {
         other as PLPItemViewState
-        return (title == other.title &&
+        return (
+            title == other.title &&
                 imageUrl == other.imageUrl &&
                 rating == other.rating &&
                 ratingCount == other.ratingCount &&
-                price == other.price)
+                price == other.price
+            )
     }
 }

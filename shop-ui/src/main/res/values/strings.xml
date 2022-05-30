@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="test">123</string>
-    <string-array name="array_filter_values">
-        <item>First</item>
-        <item>Second</item>
-        <item>Third</item>
-    </string-array>
+    <string name="label_sort_by">Sort by</string>
+
+    <string name="sort_type_popular">Popular</string>
+    <string name="sort_type_price_lowest_to_high">Price: lowest to high</string>
+    <string name="sort_type_price_highest_to_low">Price: highest to low</string>
 </resources>

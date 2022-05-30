@@ -20,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorFilterBackground"
+            android:background="@color/colorHeaderFragment"
             android:orientation="vertical">
 
             <LinearLayout
@@ -28,15 +28,22 @@
                 android:layout_height="@dimen/normal_150"
                 android:layout_marginHorizontal="@dimen/normal_100"
                 android:layout_marginVertical="@dimen/normal_125"
+                android:background="@color/colorFilterBackground"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/sort_text_view"
+                    style="@style/Regular_12sp"
+                    android:layout_width="@dimen/normal_0"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_spinner_sort"
-                    android:entries="@array/array_filter_values"
-                    android:paddingStart="@dimen/normal_125" />
+                    android:drawableStart="@drawable/ic_arrow_two_way"
+                    android:drawablePadding="@dimen/normal_125"
+                    android:gravity="center_vertical"
+                    android:onClick="@{()->viewModel.showSorts()}"
+                    android:paddingStart="@dimen/normal_125"
+                    android:text="@{viewModel.sort}"
+                    tools:text="Price: lowest to high" />
 
                 <ToggleButton
                     style="@style/ToggleChangeDisplayItems"
@@ -48,7 +55,10 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/normal_100">
+            android:paddingTop="@dimen/normal_100"
+            app:onRefreshListener="@{() -> viewModel.getProducts()}"
+            app:refreshing="@{viewModel.progressBar}"
+            tools:background="@color/colorBackground">
 
             <androidx.recyclerview.widget.RecyclerView
                 items="@{viewModel.productsList}"

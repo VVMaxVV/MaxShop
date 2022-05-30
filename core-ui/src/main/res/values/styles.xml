@@ -45,14 +45,14 @@
         <item name="android:background">@drawable/selector_toggle_change_display_items</item>
         <item name="android:layout_width">@dimen/normal_100</item>
         <item name="android:layout_height">@dimen/normal_75</item>
-        <item name="android:textOn"> </item>
-        <item name="android:textOff"> </item>
+        <item name="android:textOn"></item>
+        <item name="android:textOff"></item>
     </style>
 
     <style name="ToggleFavorite" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="android:background">@drawable/selector_toggle_favorite</item>
-        <item name="android:textOff">""</item>
-        <item name="android:textOn">""</item>
+        <item name="android:textOff"></item>
+        <item name="android:textOn"></item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
     </style>
@@ -65,9 +65,21 @@
 
     <style name="CustomRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/rating_bar_custom</item>
-        <item name="android:minHeight">14dp</item>
-        <item name="android:maxHeight">14dp</item>
-        <item name="android:stepSize">0.01</item>
+        <item name="android:stepSize">0.1</item>
+        <item name="android:numStars">5</item>
+        <item name="android:minHeight">@dimen/normal_100</item>
+        <item name="android:maxHeight">@dimen/normal_100</item>
         <item name="android:isIndicator">true</item>
     </style>
+
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_background</item>
+    </style>
+
 </resources>
