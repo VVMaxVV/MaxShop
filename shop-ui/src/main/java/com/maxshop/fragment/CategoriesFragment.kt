@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.maxshop.shop_ui.databinding.FragmentCategoriesBinding
 import com.maxshop.viewModel.CategoriesViewModel
 
-class CategoriesFragment : BaseFragment() {
+internal class CategoriesFragment : BaseFragment() {
     private val viewModel: CategoriesViewModel by viewModels { factory }
 
     override fun onCreateView(

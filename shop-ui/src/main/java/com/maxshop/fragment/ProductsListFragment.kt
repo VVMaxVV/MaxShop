@@ -11,7 +11,7 @@ import com.maxshop.model.TypeSort
 import com.maxshop.shop_ui.databinding.FragmentProductsListBinding
 import com.maxshop.viewModel.ProductsListViewModel
 
-class ProductsListFragment : BaseFragment() {
+internal class ProductsListFragment : BaseFragment() {
     private val args: ProductsListFragmentArgs by navArgs()
 
     private var binding: FragmentProductsListBinding? = null

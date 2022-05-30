@@ -19,37 +19,30 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorHeaderFragment"
-            android:orientation="vertical">
+            android:layout_height="@dimen/normal_150"
+            android:layout_marginHorizontal="@dimen/normal_100"
+            android:layout_marginVertical="@dimen/normal_125"
+            android:background="@color/colorFilterBackground"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/normal_150"
-                android:layout_marginHorizontal="@dimen/normal_100"
-                android:layout_marginVertical="@dimen/normal_125"
-                android:background="@color/colorFilterBackground"
-                android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sort_text_view"
+                style="@style/Regular_12sp"
+                android:layout_width="@dimen/normal_0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_arrow_two_way"
+                android:drawablePadding="@dimen/normal_125"
+                android:gravity="center_vertical"
+                android:onClick="@{()->viewModel.showSorts()}"
+                android:paddingStart="@dimen/normal_125"
+                android:text="@{viewModel.sort}"
+                tools:text="Price: lowest to high" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/sort_text_view"
-                    style="@style/Regular_12sp"
-                    android:layout_width="@dimen/normal_0"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_arrow_two_way"
-                    android:drawablePadding="@dimen/normal_125"
-                    android:gravity="center_vertical"
-                    android:onClick="@{()->viewModel.showSorts()}"
-                    android:paddingStart="@dimen/normal_125"
-                    android:text="@{viewModel.sort}"
-                    tools:text="Price: lowest to high" />
-
-                <ToggleButton
-                    style="@style/ToggleChangeDisplayItems"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/normal_12" />
-            </LinearLayout>
+            <ToggleButton
+                style="@style/ToggleChangeDisplayItems"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/normal_12" />
         </LinearLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

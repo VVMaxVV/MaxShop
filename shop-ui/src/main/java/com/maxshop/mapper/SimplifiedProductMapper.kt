@@ -8,7 +8,7 @@ import com.maxshop.shop_ui.R
 import com.maxshop.viewState.PLPItemViewState
 import javax.inject.Inject
 
-class SimplifiedProductMapper @Inject constructor() {
+internal class SimplifiedProductMapper @Inject constructor() {
     fun toPLPItemViewState(product: SimplifiedProduct): PLPItemViewState {
         return PLPItemViewState(
             product.id,

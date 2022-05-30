@@ -15,7 +15,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class ProductsListViewModel @Inject constructor(
+internal class ProductsListViewModel @Inject constructor(
     private val getProductsCategory: GetProductsCategoryUseCase,
     private val simplifiedProductMapper: SimplifiedProductMapper,
     private val sortStream: SortStream
@@ -28,7 +28,7 @@ class ProductsListViewModel @Inject constructor(
 
     val progressBar = MutableLiveData<Boolean>()
 
-    val sort = MutableLiveData(TypeSort.Popular)
+    val sort = MutableLiveData<TypeSort>()
 
     var categoryName: String? = null
 

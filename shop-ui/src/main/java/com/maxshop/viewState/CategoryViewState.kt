@@ -1,9 +1,10 @@
 package com.maxshop.viewState
 
 import com.maxshop.adapter.comparator.RecyclerItemComparator
+import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
-class CategoryViewState(
+internal class CategoryViewState(
     val name: String,
     val url: String
 ) : RecyclerItemComparator {
@@ -12,7 +13,7 @@ class CategoryViewState(
     }
 
     private val uiEvent = PublishSubject.create<Event>()
-    val events = uiEvent.hide()
+    val events: Observable<Event> = uiEvent.hide()
     fun onProductClick(name: String) {
         uiEvent.onNext(Event.OnProductClick(name))
     }

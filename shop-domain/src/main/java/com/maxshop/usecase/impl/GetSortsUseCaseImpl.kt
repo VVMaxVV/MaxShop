@@ -6,7 +6,7 @@ import com.maxshop.usecase.GetSortsUseCase
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetSortsUseCaseImpl @Inject constructor(
+internal class GetSortsUseCaseImpl @Inject constructor(
     private val toolsRepository: ToolsRepository
 ) : GetSortsUseCase {
     override fun execute(): Single<List<TypeSort>> {

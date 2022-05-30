@@ -8,7 +8,7 @@ import com.maxshop.usecase.GetProductsCategoryUseCase
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetProductsCategoryUseCaseImpl @Inject constructor(
+internal class GetProductsCategoryUseCaseImpl @Inject constructor(
     private val productRepository: ProductRepository,
     private val productMapper: ProductMapper
 ) : GetProductsCategoryUseCase {

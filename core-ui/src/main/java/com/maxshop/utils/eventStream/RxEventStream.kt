@@ -1,14 +1,15 @@
 package com.maxshop.utils.eventStream
 
-import io.reactivex.subjects.PublishSubject
+import io.reactivex.Observable
+import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 
 class RxEventStream<T> @Inject constructor() {
-    private val _subject: PublishSubject<T> = PublishSubject.create()
+    private val _subject: BehaviorSubject<T> = BehaviorSubject.create()
 
     fun post(data: T) {
         _subject.onNext(data!!)
     }
 
-    fun stream() = _subject.hide()
+    fun stream(): Observable<T> = _subject.hide()
 }

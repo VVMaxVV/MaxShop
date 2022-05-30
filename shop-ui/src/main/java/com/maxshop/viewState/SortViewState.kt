@@ -3,9 +3,10 @@ package com.maxshop.viewState
 import androidx.lifecycle.MutableLiveData
 import com.maxshop.adapter.comparator.RecyclerItemComparator
 import com.maxshop.model.TypeSort
+import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
-class SortViewState(
+internal class SortViewState(
     val position: Int,
     val type: TypeSort,
     val isActive: MutableLiveData<Boolean>
@@ -15,7 +16,7 @@ class SortViewState(
     }
 
     private val uiEvent = PublishSubject.create<Event>()
-    val events = uiEvent.hide()
+    val events: Observable<Event> = uiEvent.hide()
 
     fun onClick(viewState: SortViewState) {
         uiEvent.onNext(Event.OnClick(viewState))

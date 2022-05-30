@@ -2,9 +2,10 @@ package com.maxshop.viewState
 
 import androidx.lifecycle.MutableLiveData
 import com.maxshop.adapter.comparator.RecyclerItemComparator
+import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
-class PLPItemViewState(
+internal class PLPItemViewState(
     val id: Int,
     val category: String,
     val title: String,
@@ -20,7 +21,7 @@ class PLPItemViewState(
     }
 
     private val uiEvent = PublishSubject.create<Event>()
-    val events = uiEvent.hide()
+    val events: Observable<Event> = uiEvent.hide()
 
     fun onClick(product: PLPItemViewState) {
         uiEvent.onNext(Event.OnClicked(product.id, product.category, product.title))

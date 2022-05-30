@@ -8,7 +8,7 @@ import com.maxshop.model.TypeSort
 import com.maxshop.shop_ui.R
 
 @BindingAdapter("isActiveSort")
-fun setActiveSortTextView(view: TextView, state: Boolean) {
+internal fun setActiveSortTextView(view: TextView, state: Boolean) {
     if (state) {
         view.setBackgroundColor(ContextCompat.getColor(view.context, R.color.colorPrimary))
         view.setTextColor(ContextCompat.getColor(view.context, R.color.colorSecondaryText))
@@ -19,7 +19,7 @@ fun setActiveSortTextView(view: TextView, state: Boolean) {
 }
 
 @BindingAdapter("android:text")
-fun setSortType(view: AppCompatTextView, type: TypeSort?) {
+internal fun setSortType(view: AppCompatTextView, type: TypeSort?) {
     when (type) {
         TypeSort.Popular ->
             view.text = view.context.getString(R.string.sort_type_popular)

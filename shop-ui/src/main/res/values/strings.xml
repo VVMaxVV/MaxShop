@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="test">123</string>
     <string name="label_sort_by">Sort by</string>
 
     <string name="sort_type_popular">Popular</string>

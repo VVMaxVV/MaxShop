@@ -32,7 +32,7 @@
         android:label="BottomSheetSortFragment"
         tools:layout="@layout/fragment_bottom_sheet_sort">
         <argument
-            android:name="typeSort"
+            android:name="activeSort"
             app:argType="com.maxshop.model.TypeSort" />
     </dialog>
 </navigation>

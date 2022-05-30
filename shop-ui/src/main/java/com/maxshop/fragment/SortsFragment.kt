@@ -15,7 +15,7 @@ import com.maxshop.viewModel.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class SortsFragment : BottomSheetDialogFragment() {
+internal class SortsFragment : BottomSheetDialogFragment() {
     private val args: SortsFragmentArgs by navArgs()
 
     @Inject
@@ -51,7 +51,7 @@ class SortsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getSortsList(args.typeSort)
+        viewModel.getSortsList(args.activeSort)
 
         viewModel.event.observe(viewLifecycleOwner) {
             when (it) {

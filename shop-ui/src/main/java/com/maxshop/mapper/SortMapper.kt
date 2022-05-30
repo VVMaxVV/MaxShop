@@ -8,7 +8,7 @@ import com.maxshop.shop_ui.R
 import com.maxshop.viewState.SortViewState
 import javax.inject.Inject
 
-class SortMapper @Inject constructor() {
+internal class SortMapper @Inject constructor() {
     fun toViewState(type: TypeSort, position: Int): SortViewState {
         return SortViewState(
             position,

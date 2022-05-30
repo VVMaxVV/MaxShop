@@ -15,7 +15,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class SortsViewModel @Inject constructor(
+internal class SortsViewModel @Inject constructor(
     private val getSortsUseCase: GetSortsUseCase,
     private val sortMapper: SortMapper,
     private val sortStream: SortStream

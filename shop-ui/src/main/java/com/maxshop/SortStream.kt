@@ -6,7 +6,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SortStream @Inject constructor(rxEventStream: RxEventStream<TypeSort>) {
+internal class SortStream @Inject constructor(rxEventStream: RxEventStream<TypeSort>) {
     val value = rxEventStream.also {
         it.post(TypeSort.Popular)
     }
