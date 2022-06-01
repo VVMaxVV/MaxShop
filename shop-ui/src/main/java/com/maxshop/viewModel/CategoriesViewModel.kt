@@ -1,6 +1,5 @@
 package com.maxshop.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.internetshop.presentation.utils.SingleLiveEvent

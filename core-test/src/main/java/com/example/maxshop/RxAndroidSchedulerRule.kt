@@ -1,4 +1,4 @@
-package com.maxshop
+package com.example.maxshop
 
 import io.reactivex.Scheduler
 import io.reactivex.android.plugins.RxAndroidPlugins
