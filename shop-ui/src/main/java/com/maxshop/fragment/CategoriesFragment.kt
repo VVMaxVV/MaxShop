@@ -32,7 +32,7 @@ internal class CategoriesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getProducts()
+        viewModel.getCategories()
 
         viewModel.events.observe(viewLifecycleOwner) {
             when (it) {

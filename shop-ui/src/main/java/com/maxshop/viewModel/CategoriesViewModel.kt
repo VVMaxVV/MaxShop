@@ -1,5 +1,6 @@
 package com.maxshop.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.internetshop.presentation.utils.SingleLiveEvent
@@ -21,12 +22,13 @@ internal class CategoriesViewModel @Inject constructor(
     private val _events = SingleLiveEvent<Event>()
     val events: LiveData<Event> get() = _events
 
-    private val _categories = MutableLiveData<List<RecyclerItem>>()
-    val categories: LiveData<List<RecyclerItem>> get() = _categories
+    private val _categoriesList = MutableLiveData<List<RecyclerItem>>()
+    val categoriesList: LiveData<List<RecyclerItem>> get() = _categoriesList
 
-    val progressBar = MutableLiveData<Boolean>()
+    private val _progressBar = MutableLiveData<Boolean>()
+    val progressBar: LiveData<Boolean> get() = _progressBar
 
-    fun getProducts() {
+    fun getCategories() {
         compositeDisposable += getCategoriesUseCase.execute()
             .subscribeOn(Schedulers.io())
             .map {
@@ -41,24 +43,24 @@ internal class CategoriesViewModel @Inject constructor(
                 }
             }
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { progressBar.value = true }
-            .doFinally { progressBar.value = false }
+            .doOnSubscribe { _progressBar.value = true }
+            .doFinally { _progressBar.value = false }
             .subscribeBy(
                 onSuccess = {
-                    _categories.value = it.map {
+                    _categoriesList.value = it.map {
                         categoryMapper.toRecyclerItem(it)
                     }
                 },
                 onError = {
                     _events.value =
-                        Event.OnError(it, "GetCategoriesUseCase Throwable")
+                        Event.OnError(it)
                 }
             )
     }
 
     private fun onCategoryViewStateEvent(event: CategoryViewState.Event) {
         when (event) {
-            is CategoryViewState.Event.OnProductClick -> {
+            is CategoryViewState.Event.OnCategoryClick -> {
                 _events.value =
                     Event.OpenCategory(event.name)
             }
