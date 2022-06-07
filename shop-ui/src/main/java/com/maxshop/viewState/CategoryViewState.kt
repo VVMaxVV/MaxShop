@@ -9,13 +9,13 @@ internal class CategoryViewState(
     val url: String
 ) : RecyclerItemComparator {
     sealed class Event {
-        data class OnProductClick(val name: String) : Event()
+        data class OnCategoryClick(val name: String) : Event()
     }
 
     private val uiEvent = PublishSubject.create<Event>()
     val events: Observable<Event> = uiEvent.hide()
     fun onProductClick(name: String) {
-        uiEvent.onNext(Event.OnProductClick(name))
+        uiEvent.onNext(Event.OnCategoryClick(name))
     }
 
     override fun isSameItem(other: Any): Boolean {

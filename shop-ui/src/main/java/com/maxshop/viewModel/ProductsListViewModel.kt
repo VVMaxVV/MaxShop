@@ -28,7 +28,8 @@ internal class ProductsListViewModel @Inject constructor(
 
     val progressBar = MutableLiveData<Boolean>()
 
-    val sort = MutableLiveData<TypeSort>()
+    private val _sort = MutableLiveData<TypeSort>()
+    val sort: LiveData<TypeSort> get() = _sort
 
     var categoryName: String? = null
 
@@ -37,7 +38,7 @@ internal class ProductsListViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onNext = {
-                    sort.value = it
+                    _sort.value = it
                     getProducts()
                 }
             )

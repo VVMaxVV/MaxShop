@@ -55,7 +55,4 @@ dependencies {
 
     // Default
     api "androidx.core:core-ktx:$core_ktx_version"
-    testApi "junit:junit:$junit_version"
-    androidTestApi "androidx.test.ext:junit:$androidx_junit"
-    androidTestApi "androidx.test.espresso:espresso-core:$espresso_core"
 }

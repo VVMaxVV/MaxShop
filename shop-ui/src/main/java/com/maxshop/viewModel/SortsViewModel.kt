@@ -37,9 +37,11 @@ internal class SortsViewModel @Inject constructor(
                         if (it.type == activeSort) {
                             activePosition = position
                         }
-                        compositeDisposable += it.events.subscribeBy {
-                            onSortViewStateEvent(it)
-                        }
+                        compositeDisposable += it.events.subscribeBy(
+                            onNext = {
+                                onSortViewStateEvent(it)
+                            }
+                        )
                     }
                 }
             }
@@ -47,7 +49,7 @@ internal class SortsViewModel @Inject constructor(
             .subscribeBy(
                 onSuccess = {
                     _listSorts.value = it.map { sortMapper.toRecyclerItem(it) }.also {
-                        (it[activePosition].data as SortViewState).isActive.value = true
+                        (it[activePosition].data as? SortViewState)?.isActive?.value = true
                     }
                 }
             )
@@ -56,7 +58,7 @@ internal class SortsViewModel @Inject constructor(
     private fun onSortViewStateEvent(viewStateEvent: SortViewState.Event) {
         when (viewStateEvent) {
             is SortViewState.Event.OnClick -> {
-                (_listSorts.value?.get(activePosition)?.data as SortViewState).isActive.value =
+                (_listSorts.value?.get(activePosition)?.data as? SortViewState)?.isActive?.value =
                     false
                 viewStateEvent.viewState.isActive.value = true
                 activePosition = viewStateEvent.viewState.position

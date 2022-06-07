@@ -17,14 +17,14 @@
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:onRefreshListener="@{() -> viewModel.getProducts()}"
+        app:onRefreshListener="@{() -> viewModel.getCategories()}"
         app:refreshing="@{viewModel.progressBar}">
 
         <androidx.recyclerview.widget.RecyclerView
             app:addItemDecoration="@{Decorations.spaces(@dimen/normal_100, true)}"
             android:id="@+id/recycler_view_category"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            items="@{viewModel.categories}"
+            items="@{viewModel.categoriesList}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/normal_100"
