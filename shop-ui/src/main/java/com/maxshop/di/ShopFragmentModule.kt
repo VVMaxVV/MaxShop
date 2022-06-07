@@ -27,5 +27,5 @@ internal interface ShopFragmentModule {
     fun provideSizeSelectionFragment(): SizeSelectionFragment
 
     @ContributesAndroidInjector
-    fun prpvideColorSelectionFragment(): ColorSelectionFragment
+    fun provideColorSelectionFragment(): ColorSelectionFragment
 }

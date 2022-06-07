@@ -34,6 +34,11 @@ internal class ProductRepositoryImpl @Inject constructor(
                     }
                 }
         }
+
+    }
+
+    override suspend fun getDetailedProduct(id: Int): DetailedProduct {
+        return productResponseMapper.toDetailedProduct(productApi.getProduct(id))
     }
 
     override suspend fun getDetailedProduct(id: Int): DetailedProduct {
