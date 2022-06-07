@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_productsListFragment_to_bottomSheetSortFragment"
             app:destination="@id/bottomSheetSortFragment" />
+        <action
+            android:id="@+id/action_productsListFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetSortFragment"
@@ -34,5 +37,26 @@
         <argument
             android:name="activeSort"
             app:argType="com.maxshop.model.TypeSort" />
+    </dialog>
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.maxshop.fragment.ProductDetailsFragment"
+        android:label="ProductDetailsFragment"
+        tools:layout="@layout/fragment_product_details">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_sizeSelectionFragment"
+            app:destination="@id/sizeSelectionFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/sizeSelectionFragment"
+        android:name="com.maxshop.fragment.SizeSelectionFragment"
+        android:label="SizeSelectionFragment"
+        tools:layout="@layout/fragment_size_selection" >
+        <argument
+            android:name="sizes"
+            app:argType="string[]" />
     </dialog>
 </navigation>

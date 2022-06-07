@@ -20,8 +20,8 @@ fun setImage(view: AppCompatImageView, imageUrl: String?) {
 }
 
 @BindingAdapter("android:visibility")
-fun setVisibility(view: View, visible: Boolean) {
-    view.visibility = if (visible) View.VISIBLE else View.GONE
+fun setVisibility(view: View, visible: Boolean?) {
+    view.visibility = if (visible == true) View.VISIBLE else View.GONE
 }
 
 @BindingAdapter("items")

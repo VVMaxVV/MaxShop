@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="label_sort_by">Sort by</string>
+    <string name="label_select_size">Select size</string>
 
     <string name="sort_type_popular">Popular</string>
     <string name="sort_type_price_lowest_to_high">Price: lowest to high</string>
     <string name="sort_type_price_highest_to_low">Price: highest to low</string>
+
+    <string name="label_size">Size</string>
+    <string name="label_color">Color</string>
+    <string name="label_add_to_cart">ADD TO CART</string>
 </resources>

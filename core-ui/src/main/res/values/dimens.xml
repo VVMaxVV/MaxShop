@@ -50,6 +50,8 @@
     <dimen name="normal_775">124dp</dimen>
     <dimen name="normal_800">128dp</dimen>
 
+    <dimen name="normal_875">140dp</dimen>
+
     <dimen name="normal_1250">200dp</dimen>
 
     <dimen name="sp_normal_0">0sp</dimen>

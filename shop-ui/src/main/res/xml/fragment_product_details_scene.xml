@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/tools">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/normal_0"
+            android:alpha="1"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="H,15:11"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/details_root"
+            motion:layout_constraintTop_toBottomOf="@id/image_view" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/normal_0"
+            android:alpha="0"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="H,15:11"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/details_root"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start"
+        motion:duration="1000">
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:touchAnchorId="@+id/details_root" />
+    </Transition>
+</MotionScene>

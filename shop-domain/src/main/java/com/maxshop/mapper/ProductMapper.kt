@@ -8,7 +8,6 @@ class ProductMapper @Inject constructor() {
     fun toSimpleProduct(product: Product): SimplifiedProduct {
         return SimplifiedProduct(
             product.id,
-            product.category,
             product.title,
             product.imageUrl,
             product.rating,

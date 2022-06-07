@@ -1,5 +1,6 @@
 package com.maxshop.bindingAdapter
 
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
@@ -28,4 +29,9 @@ internal fun setSortType(view: AppCompatTextView, type: TypeSort?) {
         TypeSort.PriceHighestToLow ->
             view.text = view.context.getString(R.string.sort_type_price_highest_to_low)
     }
+}
+
+@BindingAdapter("visibleIfNotNull")
+internal fun setVisibilityIfNotNull(view: View, data: Any?) {
+    view.visibility = if (data != null) View.VISIBLE else View.INVISIBLE
 }

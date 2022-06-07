@@ -80,7 +80,7 @@ internal class ProductsListViewModel @Inject constructor(
     private fun onPLPItemViewStateEvent(event: PLPItemViewState.Event) {
         when (event) {
             is PLPItemViewState.Event.OnClicked -> {
-                _event.value = Event.OpenProduct(event.id, event.category, event.title)
+                _event.value = Event.OpenProduct(event.id, event.title)
             }
             is PLPItemViewState.Event.OnFavoriteClicked -> {
                 _event.value = Event.FavoriteOnClicked(event.id, event.buttonState)
@@ -89,7 +89,7 @@ internal class ProductsListViewModel @Inject constructor(
     }
 
     sealed class Event {
-        data class OpenProduct(val id: Int, val category: String, val title: String) : Event()
+        data class OpenProduct(val id: Int, val title: String) : Event()
         data class FavoriteOnClicked(val id: Int, val stateIsFavorite: Boolean?) : Event()
         data class OnError(val throwable: Throwable, val description: String? = null) : Event()
         object ShowSorts : Event()
