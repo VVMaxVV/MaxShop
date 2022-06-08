@@ -34,7 +34,6 @@ internal class ProductRepositoryImpl @Inject constructor(
                     }
                 }
         }
-
     }
 
     override suspend fun getDetailedProduct(id: Int): DetailedProduct {
