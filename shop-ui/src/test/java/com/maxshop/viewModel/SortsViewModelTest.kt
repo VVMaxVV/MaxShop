@@ -4,9 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import com.example.maxshop.RxAndroidSchedulerRule
 import com.jraska.livedata.test
-import com.maxshop.SortStream
 import com.maxshop.mapper.SortMapper
 import com.maxshop.model.TypeSort
+import com.maxshop.stream.SortStream
 import com.maxshop.usecase.GetSortsUseCase
 import com.maxshop.viewState.SortViewState
 import io.mockk.MockKAnnotations
