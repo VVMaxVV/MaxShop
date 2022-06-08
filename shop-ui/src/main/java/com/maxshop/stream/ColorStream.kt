@@ -6,7 +6,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-internal class SizeStream @Inject constructor() : Stream<String> {
+internal class ColorStream @Inject constructor() : Stream<String> {
     private val _subject = Channel<String>()
 
     override suspend fun post(data: String) {

@@ -1,6 +1,6 @@
 package com.maxshop.mapper
 
-import com.maxshop.fatory.ColorVisibilityFactory
+import com.maxshop.fatory.ColorsFactory
 import com.maxshop.fatory.SizesFactory
 import com.maxshop.model.ProductResponse
 import com.maxshop.model.product.DetailedProduct
@@ -9,8 +9,8 @@ import java.util.Locale
 import javax.inject.Inject
 
 internal class ProductResponseMapper @Inject constructor(
-    private val colorVisibilityFactory: ColorVisibilityFactory,
-    private val sizesFactory: SizesFactory
+    private val sizesFactory: SizesFactory,
+    private val colorFactory: ColorsFactory
 ) {
     fun toSimplifiedProduct(product: ProductResponse) = SimplifiedProduct(
         product.id,
@@ -33,6 +33,6 @@ internal class ProductResponseMapper @Inject constructor(
         product.rating.rate,
         product.rating.count,
         sizesFactory.get(product.category),
-        colorVisibilityFactory.get(product)
+        colorFactory.get(product.category)
     )
 }

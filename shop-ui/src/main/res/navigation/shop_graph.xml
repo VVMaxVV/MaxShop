@@ -49,14 +49,26 @@
         <action
             android:id="@+id/action_productDetailsFragment_to_sizeSelectionFragment"
             app:destination="@id/sizeSelectionFragment" />
+        <action
+            android:id="@+id/action_PDP_to_colorSelectionFragment"
+            app:destination="@id/colorsFragment" />
     </fragment>
     <dialog
         android:id="@+id/sizeSelectionFragment"
         android:name="com.maxshop.fragment.SizeSelectionFragment"
         android:label="SizeSelectionFragment"
-        tools:layout="@layout/fragment_size_selection" >
+        tools:layout="@layout/fragment_size_selection">
         <argument
             android:name="sizes"
+            app:argType="string[]" />
+    </dialog>
+    <dialog
+        android:id="@+id/colorsFragment"
+        android:name="com.maxshop.fragment.ColorSelectionFragment"
+        android:label="ColorsFragment"
+        tools:layout="@layout/fragment_color_selection">
+        <argument
+            android:name="colors"
             app:argType="string[]" />
     </dialog>
 </navigation>

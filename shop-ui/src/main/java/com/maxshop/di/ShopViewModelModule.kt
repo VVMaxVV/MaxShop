@@ -2,6 +2,7 @@ package com.maxshop.di
 
 import androidx.lifecycle.ViewModel
 import com.maxshop.viewModel.CategoriesViewModel
+import com.maxshop.viewModel.ColorSelectionViewModel
 import com.maxshop.viewModel.ProductDetailsViewModel
 import com.maxshop.viewModel.ProductsListViewModel
 import com.maxshop.viewModel.SizeSelectionViewModel
@@ -32,4 +33,8 @@ internal interface ShopViewModelModule {
     @Binds
     @[IntoMap ViewModelKey(SizeSelectionViewModel::class)]
     fun provideSizeSelectionViewModel(viewModel: SizeSelectionViewModel): ViewModel
+
+    @Binds
+    @[IntoMap ViewModelKey(ColorSelectionViewModel::class)]
+    fun provideColorSelectionViewModel(viewModel: ColorSelectionViewModel): ViewModel
 }

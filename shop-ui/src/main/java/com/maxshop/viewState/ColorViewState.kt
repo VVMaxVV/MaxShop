@@ -4,7 +4,7 @@ import com.maxshop.adapter.comparator.RecyclerItemComparator
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 
-internal class SizeViewState(
+internal class ColorViewState(
     override val text: String,
     override val isActive: Boolean
 ) : RecyclerItemComparator, BaseProductOptionsViewState(text, isActive) {
@@ -13,19 +13,23 @@ internal class SizeViewState(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     override fun onClick(viewState: BaseProductOptionsViewState) {
-        (viewState as? SizeViewState)?.let {
+        (viewState as? ColorViewState)?.let {
             _uiEvent.trySend(Event.OnClick(it))
         }
+    }
+
+    fun onClick(viewState: ColorViewState) {
+        _uiEvent.trySend(Event.OnClick(viewState))
     }
 
     override fun isSameItem(other: Any): Boolean {
         if (this === other) return true
         if (javaClass != other.javaClass) return false
-        return text == (other as SizeViewState).text
+        return text == (other as ColorViewState).text
     }
 
     override fun isSameContent(other: Any): Boolean {
-        other as SizeViewState
+        other as ColorViewState
         return (text == other.text && isActive == other.isActive)
     }
 }

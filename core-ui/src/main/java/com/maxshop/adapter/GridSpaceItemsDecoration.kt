@@ -2,13 +2,13 @@ package com.maxshop.adapter
 
 import android.graphics.Rect
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
+import androidx.annotation.Dimension
 import androidx.recyclerview.widget.GridLayoutManager
-
+import androidx.recyclerview.widget.RecyclerView
 
 class GridSpaceItemsDecoration(
-    private val verticalSpacing: Int,
-    private val horizontalSpacing: Int
+    @param:Dimension val verticalSpacing: Int,
+    @param:Dimension val horizontalSpacing: Int
 ) :
     RecyclerView.ItemDecoration() {
 
@@ -31,7 +31,10 @@ class GridSpaceItemsDecoration(
 
     companion object {
         @JvmStatic
-        fun create(verticalSpacing: Int, horizontalSpacing: Int): GridSpaceItemsDecoration {
+        fun create(
+            @Dimension verticalSpacing: Int,
+            @Dimension horizontalSpacing: Int
+        ): GridSpaceItemsDecoration {
             return GridSpaceItemsDecoration(verticalSpacing, horizontalSpacing)
         }
     }

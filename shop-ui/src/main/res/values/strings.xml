@@ -2,6 +2,7 @@
 <resources>
     <string name="label_sort_by">Sort by</string>
     <string name="label_select_size">Select size</string>
+    <string name="label_select_color">Select color</string>
 
     <string name="sort_type_popular">Popular</string>
     <string name="sort_type_price_lowest_to_high">Price: lowest to high</string>

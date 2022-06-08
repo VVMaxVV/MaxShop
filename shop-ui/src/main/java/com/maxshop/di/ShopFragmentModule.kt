@@ -1,6 +1,7 @@
 package com.maxshop.di
 
 import com.maxshop.fragment.CategoriesFragment
+import com.maxshop.fragment.ColorSelectionFragment
 import com.maxshop.fragment.ProductDetailsFragment
 import com.maxshop.fragment.ProductsListFragment
 import com.maxshop.fragment.SizeSelectionFragment
@@ -24,4 +25,7 @@ internal interface ShopFragmentModule {
 
     @ContributesAndroidInjector
     fun provideSizeSelectionFragment(): SizeSelectionFragment
+
+    @ContributesAndroidInjector
+    fun prpvideColorSelectionFragment(): ColorSelectionFragment
 }

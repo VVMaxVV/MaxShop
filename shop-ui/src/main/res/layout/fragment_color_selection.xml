@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.maxshop.viewModel.SizeSelectionViewModel" />
+            type="com.maxshop.viewModel.ColorSelectionViewModel" />
 
         <import type="com.maxshop.adapter.Decorations" />
     </data>
@@ -31,11 +31,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/normal_100"
             android:background="@android:color/transparent"
-            android:text="@string/label_select_size" />
+            android:text="@string/label_select_color" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
-            items="@{viewModel.listSizes}"
+            items="@{viewModel.listColors}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/normal_25"

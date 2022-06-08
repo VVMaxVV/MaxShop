@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="size"
-            type="com.maxshop.viewState.SizeViewState" />
+            name="viewState"
+            type="com.maxshop.viewState.BaseProductOptionsViewState" />
     </data>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -15,9 +15,9 @@
         android:layout_height="wrap_content"
         android:background="@drawable/product_options_menu"
         android:gravity="center"
-        android:onClick="@{()->size.onClick(size)}"
+        android:onClick="@{()->viewState.onClick(viewState)}"
         android:paddingVertical="@dimen/normal_75"
-        android:text="@{size.text.toUpperCase()}"
+        android:text="@{viewState.text}"
         tools:layout_marginBottom="@dimen/normal_100"
         tools:text="L" />
 </layout>

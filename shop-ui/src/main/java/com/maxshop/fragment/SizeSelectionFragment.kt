@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.maxshop.shop_ui.databinding.FragmentSizeSelectionBinding
 import com.maxshop.viewModel.SizeSelectionViewModel
@@ -32,5 +33,11 @@ internal class SizeSelectionFragment : BaseBottomSheetFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getSizes(args.sizes.toList())
+
+        viewModel.event.observe(viewLifecycleOwner) {
+            when (it) {
+                is SizeSelectionViewModel.Event.CloseDialog -> findNavController().popBackStack()
+            }
+        }
     }
 }

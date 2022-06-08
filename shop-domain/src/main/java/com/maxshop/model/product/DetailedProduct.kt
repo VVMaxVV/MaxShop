@@ -9,6 +9,6 @@ data class DetailedProduct(
     val imageUrl: String,
     val rating: Float,
     val ratingCount: Int,
-    val sizesList: List<String>,
-    val colorVisibility: Boolean
+    val sizesList: List<String>?,
+    val colorsList: List<String>?
 )
