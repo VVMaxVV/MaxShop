@@ -33,7 +33,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
-            items="@{viewModel.listColors}"
+            items="@{viewModel.itemsList}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/normal_25"

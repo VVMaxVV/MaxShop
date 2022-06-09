@@ -39,4 +39,6 @@ dependencies {
     api "io.mockk:mockk:$mockk_version"
     api "androidx.arch.core:core-testing:$arch_core"
     api "com.jraska.livedata:testing-ktx:$livedata_test"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
+
 }

@@ -1,6 +1,9 @@
 package com.maxshop.viewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
 import com.example.maxshop.RxAndroidSchedulerRule
 import com.jraska.livedata.test
@@ -36,9 +39,13 @@ internal class CategoriesViewModelTest {
     @RelaxedMockK
     private lateinit var progressBar: Observer<Boolean>
 
+    private val lifecycleOwner = mockk<LifecycleOwner>(relaxed = true)
+    private lateinit var lifecycle: LifecycleRegistry
+
     @Before
     fun setUp() {
         MockKAnnotations.init(this, relaxUnitFun = true)
+        lifecycle = LifecycleRegistry(lifecycleOwner)
     }
 
     private fun getViewModel() = CategoriesViewModel(getCategoriesUseCase, categoryMapper)
@@ -50,9 +57,10 @@ internal class CategoriesViewModelTest {
             getCategoriesUseCase.execute()
         }.returns(Single.just(listOf(mockk())))
         val viewModel = getViewModel()
+        lifecycle.addObserver(viewModel)
 
         // WHEN
-        viewModel.getCategories()
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         // THEN
         assertNotNull(viewModel.categoriesList.value)
@@ -67,9 +75,10 @@ internal class CategoriesViewModelTest {
         }.returns(Single.error(throwable))
         val viewModel = getViewModel()
         val observer = viewModel.events.test()
+        lifecycle.addObserver(viewModel)
 
         // WHEN
-        viewModel.getCategories()
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         // THEN
         observer.assertValue {
@@ -85,9 +94,10 @@ internal class CategoriesViewModelTest {
         }.returns(Single.just(mockk()))
         val viewModel = getViewModel()
         viewModel.progressBar.observeForever(progressBar)
+        lifecycle.addObserver(viewModel)
 
         // WHEN
-        viewModel.getCategories()
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         // THEN
         verifyOrder {
@@ -107,9 +117,10 @@ internal class CategoriesViewModelTest {
         }.returns(viewState)
         val viewModel = getViewModel()
         val testObserver = viewModel.events.test()
+        lifecycle.addObserver(viewModel)
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         // WHEN
-        viewModel.getCategories()
         viewState.onProductClick("")
 
         // THEN

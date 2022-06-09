@@ -1,6 +1,9 @@
 package com.maxshop.viewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.MutableLiveData
 import com.example.maxshop.RxAndroidSchedulerRule
 import com.jraska.livedata.test
@@ -12,6 +15,7 @@ import com.maxshop.viewState.SortViewState
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
+import io.mockk.mockk
 import io.reactivex.Single
 import junit.framework.Assert.assertNotNull
 import junit.framework.Assert.assertTrue
@@ -37,9 +41,13 @@ internal class SortsViewModelTest {
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
+    private val lifecycleOwner = mockk<LifecycleOwner>(relaxed = true)
+    private lateinit var lifecycle: LifecycleRegistry
+
     @Before
     fun setUp() {
         MockKAnnotations.init(this, relaxUnitFun = true)
+        lifecycle = LifecycleRegistry(lifecycleOwner)
     }
 
     private fun getViewModel() = SortsViewModel(getSortsUseCase, sortMapper, sortStream)
@@ -51,9 +59,11 @@ internal class SortsViewModelTest {
             getSortsUseCase.execute()
         }.returns(Single.just(listOf(TypeSort.Popular)))
         val viewModel = getViewModel()
+        viewModel.activeSort = TypeSort.Popular
+        lifecycle.addObserver(viewModel)
 
         // WHEN
-        viewModel.getSortsList(TypeSort.Popular)
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         // THEN
         assertNotNull(viewModel.listSorts.value)
@@ -70,9 +80,10 @@ internal class SortsViewModelTest {
         }.returns(viewState)
         val viewModel = getViewModel()
         val observer = viewModel.event.test()
+        lifecycle.addObserver(viewModel)
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         // WHEN
-        viewModel.getSortsList(TypeSort.Popular)
         viewState.onClick(viewState)
 
         // THEN

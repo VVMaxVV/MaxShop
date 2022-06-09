@@ -1,7 +1,9 @@
 package com.maxshop.viewModel
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.maxshop.mapper.CategoryMapper
 import com.maxshop.model.RecyclerItem
 import com.maxshop.usecase.GetCategoriesUseCase
@@ -16,8 +18,7 @@ import javax.inject.Inject
 internal class CategoriesViewModel @Inject constructor(
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val categoryMapper: CategoryMapper
-) : BaseViewModel() {
-
+) : BaseLifecyclerViewModel() {
     private val _events = SingleLiveEvent<Event>()
     val events: LiveData<Event> get() = _events
 
@@ -27,7 +28,14 @@ internal class CategoriesViewModel @Inject constructor(
     private val _progressBar = MutableLiveData<Boolean>()
     val progressBar: LiveData<Boolean> get() = _progressBar
 
-    fun getCategories() {
+    val refreshListener = SwipeRefreshLayout.OnRefreshListener { getCategories() }
+
+    override fun onCreate(owner: LifecycleOwner) {
+        super.onCreate(owner)
+        getCategories()
+    }
+
+    private fun getCategories() {
         compositeDisposable += getCategoriesUseCase.execute()
             .subscribeOn(Schedulers.io())
             .map {
