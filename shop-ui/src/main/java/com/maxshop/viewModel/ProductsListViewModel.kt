@@ -1,7 +1,9 @@
 package com.maxshop.viewModel
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.maxshop.mapper.SimplifiedProductMapper
 import com.maxshop.model.RecyclerItem
 import com.maxshop.model.TypeSort
@@ -19,7 +21,9 @@ internal class ProductsListViewModel @Inject constructor(
     private val getProductsCategory: GetProductsCategoryUseCase,
     private val simplifiedProductMapper: SimplifiedProductMapper,
     private val sortStream: SortStream
-) : BaseViewModel() {
+) : BaseLifecyclerViewModel() {
+    var category: String? = null
+
     private val _productsList = MutableLiveData<List<RecyclerItem>>()
     val productsList: LiveData<List<RecyclerItem>> get() = _productsList
 
@@ -31,46 +35,50 @@ internal class ProductsListViewModel @Inject constructor(
     private val _sort = MutableLiveData<TypeSort>()
     val sort: LiveData<TypeSort> get() = _sort
 
-    var categoryName: String? = null
+    val refreshListener = SwipeRefreshLayout.OnRefreshListener { category?.let { getProducts(it) } }
 
-    fun getActiveSort() {
+    override fun onCreate(owner: LifecycleOwner) {
+        super.onCreate(owner)
+        category?.let { getProducts(it) }
+        getActiveSort()
+    }
+
+    private fun getActiveSort() {
         compositeDisposable += sortStream.value.stream()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onNext = {
                     _sort.value = it
-                    getProducts()
+                    category?.let { it -> getProducts(it) }
                 }
             )
     }
 
-    fun getProducts() {
-        categoryName?.let { name ->
-            compositeDisposable += getProductsCategory.execute(name, sort.value ?: TypeSort.Popular)
-                .subscribeOn(Schedulers.io())
-                .map {
-                    it.map {
-                        simplifiedProductMapper.toPLPItemViewState(it).also {
-                            compositeDisposable += it.events.subscribe {
-                                onPLPItemViewStateEvent(it)
-                            }
+    private fun getProducts(category: String) {
+        compositeDisposable += getProductsCategory.execute(category, sort.value ?: TypeSort.Popular)
+            .subscribeOn(Schedulers.io())
+            .map {
+                it.map {
+                    simplifiedProductMapper.toPLPItemViewState(it).also {
+                        compositeDisposable += it.events.subscribe {
+                            onPLPItemViewStateEvent(it)
                         }
                     }
                 }
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { progressBar.value = true }
-                .doFinally { progressBar.value = false }
-                .subscribeBy(
-                    onSuccess = {
-                        _productsList.value = it.map {
-                            simplifiedProductMapper.toRecyclerItem(it)
-                        }
-                    },
-                    onError = {
-                        _event.value = Event.OnError(it)
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { progressBar.value = true }
+            .doFinally { progressBar.value = false }
+            .subscribeBy(
+                onSuccess = {
+                    _productsList.value = it.map {
+                        simplifiedProductMapper.toRecyclerItem(it)
                     }
-                )
-        }
+                },
+                onError = {
+                    _event.value = Event.OnError(it)
+                }
+            )
     }
 
     fun showSorts() {

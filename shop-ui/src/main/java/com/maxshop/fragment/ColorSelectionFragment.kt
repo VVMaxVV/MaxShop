@@ -15,6 +15,15 @@ internal class ColorSelectionFragment : BaseBottomSheetFragment() {
 
     val viewModel: ColorSelectionViewModel by viewModels { factory }
 
+    override fun addLifecyclerObserver() {
+        super.addLifecyclerObserver()
+        lifecycle.addObserver(
+            viewModel.also {
+                it.colorsList = args.colors.toList()
+            }
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

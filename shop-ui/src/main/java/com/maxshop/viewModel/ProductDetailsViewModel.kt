@@ -1,5 +1,6 @@
 package com.maxshop.viewModel
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -16,7 +17,7 @@ internal class ProductDetailsViewModel @Inject constructor(
     private val getProductUseCase: GetProductUseCase,
     private val sizeStream: SizeStream,
     private val colorStream: ColorStream
-) : BaseViewModel() {
+) : BaseLifecyclerViewModel() {
     var id: Int? = null
 
     private val _size = MutableLiveData<String?>(null)
@@ -35,6 +36,11 @@ internal class ProductDetailsViewModel @Inject constructor(
 
     private val _visibilityError = MutableLiveData(false)
     val visibilityError: LiveData<Boolean> get() = _visibilityError
+
+    override fun onCreate(owner: LifecycleOwner) {
+        super.onCreate(owner)
+        getProduct()
+    }
 
     fun getProduct() {
         try {

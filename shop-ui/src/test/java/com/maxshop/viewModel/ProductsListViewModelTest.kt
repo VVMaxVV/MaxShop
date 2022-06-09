@@ -98,7 +98,7 @@ internal class ProductsListViewModelTest {
             simplifiedProductMapper.toPLPItemViewState(any())
         }.returns(viewState)
         val viewModel = getViewModel()
-        viewModel.categoryName = ""
+        viewModel.category = ""
         val testObserver = viewModel.event.test()
 
         // WHEN
@@ -130,7 +130,7 @@ internal class ProductsListViewModelTest {
             simplifiedProductMapper.toPLPItemViewState(any())
         }.returns(viewState)
         val viewModel = getViewModel()
-        viewModel.categoryName = ""
+        viewModel.category = ""
         val testObserver = viewModel.event.test()
 
         // WHEN
@@ -151,7 +151,7 @@ internal class ProductsListViewModelTest {
             getProductsCategoryUseCase.execute(category, TypeSort.Popular)
         }.returns(Single.just(listOf(mockk())))
         val viewModel = getViewModel()
-        viewModel.categoryName = category
+        viewModel.category = category
 
         // WHEN
         viewModel.getProducts()
@@ -168,7 +168,7 @@ internal class ProductsListViewModelTest {
             getProductsCategoryUseCase.execute(category, TypeSort.Popular)
         }.returns(Single.error(mockk<Throwable>()))
         val viewModel = getViewModel()
-        viewModel.categoryName = category
+        viewModel.category = category
         val observer = viewModel.event.test()
 
         // WHEN
@@ -188,7 +188,7 @@ internal class ProductsListViewModelTest {
             getProductsCategoryUseCase.execute(category, TypeSort.Popular)
         }.returns(Single.just(mockk()))
         val viewModel = getViewModel()
-        viewModel.categoryName = category
+        viewModel.category = category
         viewModel.progressBar.observeForever(progressBar)
 
         // WHEN
