@@ -17,7 +17,7 @@
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:onRefreshListener="@{() -> viewModel.getCategories()}"
+        app:onRefreshListener="@{() -> viewModel.refreshListener.onRefresh()}"
         app:refreshing="@{viewModel.progressBar}">
 
         <androidx.recyclerview.widget.RecyclerView

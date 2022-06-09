@@ -17,6 +17,15 @@ internal class SortsFragment : BaseBottomSheetFragment() {
 
     private val viewModel: SortsViewModel by viewModels { factory }
 
+    override fun addLifecyclerObserver() {
+        super.addLifecyclerObserver()
+        lifecycle.addObserver(
+            viewModel.also {
+                it.activeSort = args.activeSort
+            }
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,8 +44,6 @@ internal class SortsFragment : BaseBottomSheetFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.getSortsList(args.activeSort)
 
         viewModel.event.observe(viewLifecycleOwner) {
             when (it) {

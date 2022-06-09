@@ -1,6 +1,7 @@
 package com.maxshop.fragment
 
 import android.content.Context
+import android.os.Bundle
 import android.widget.Toast
 import com.example.core_ui.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -16,6 +17,13 @@ open class BaseBottomSheetFragment : BottomSheetDialogFragment() {
 
     protected fun showToastMessage(text: String, duration: Int = Toast.LENGTH_SHORT) {
         Toast.makeText(requireContext(), text, duration).show()
+    }
+
+    open fun addLifecyclerObserver() {}
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        addLifecyclerObserver()
     }
 
     override fun onAttach(context: Context) {

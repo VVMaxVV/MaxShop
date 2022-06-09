@@ -15,6 +15,15 @@ internal class SizeSelectionFragment : BaseBottomSheetFragment() {
 
     val viewModel: SizeSelectionViewModel by viewModels { factory }
 
+    override fun addLifecyclerObserver() {
+        super.addLifecyclerObserver()
+        lifecycle.addObserver(
+            viewModel.also {
+                it.sizesList = args.sizes.toList()
+            }
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,8 +37,6 @@ internal class SizeSelectionFragment : BaseBottomSheetFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.mapSizes(args.sizes.toList())
 
         viewModel.event.observe(viewLifecycleOwner) {
             when (it) {

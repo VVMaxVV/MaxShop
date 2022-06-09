@@ -19,6 +19,15 @@ internal class ProductDetailsFragment : BaseFragment() {
 
     override fun getBottomNavVisibility(): Boolean = false
 
+    override fun addLifecyclerObserver() {
+        super.addLifecyclerObserver()
+        lifecycle.addObserver(
+            viewModel.also {
+                it.id = args.id
+            }
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,7 +59,5 @@ internal class ProductDetailsFragment : BaseFragment() {
                 }
             }
         }
-        viewModel.id = args.id
-        viewModel.getProduct()
     }
 }

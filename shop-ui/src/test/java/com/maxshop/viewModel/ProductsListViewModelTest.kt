@@ -1,6 +1,9 @@
 package com.maxshop.viewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.maxshop.RxAndroidSchedulerRule
@@ -44,9 +47,13 @@ internal class ProductsListViewModelTest {
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
+    private val lifecycleOwner = mockk<LifecycleOwner>(relaxed = true)
+    private lateinit var lifecycle: LifecycleRegistry
+
     @Before
     fun setUp() {
         MockKAnnotations.init(this, relaxUnitFun = true)
+        lifecycle = LifecycleRegistry(lifecycleOwner)
     }
 
     private fun getViewModel() =
@@ -59,9 +66,10 @@ internal class ProductsListViewModelTest {
             sortStream.value.stream()
         }.returns(Observable.just(typeSort))
         val viewModel = getViewModel()
+        lifecycle.addObserver(viewModel)
 
         // WHEN
-        viewModel.getActiveSort()
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         // THEN
         assertTrue(viewModel.sort.value == typeSort)
@@ -98,11 +106,12 @@ internal class ProductsListViewModelTest {
             simplifiedProductMapper.toPLPItemViewState(any())
         }.returns(viewState)
         val viewModel = getViewModel()
-        viewModel.categoryName = ""
+        viewModel.category = ""
         val testObserver = viewModel.event.test()
+        lifecycle.addObserver(viewModel)
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         // WHEN
-        viewModel.getProducts()
         viewState.onClick(viewState)
 
         // THEN
@@ -130,11 +139,12 @@ internal class ProductsListViewModelTest {
             simplifiedProductMapper.toPLPItemViewState(any())
         }.returns(viewState)
         val viewModel = getViewModel()
-        viewModel.categoryName = ""
+        viewModel.category = ""
         val testObserver = viewModel.event.test()
+        lifecycle.addObserver(viewModel)
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         // WHEN
-        viewModel.getProducts()
         viewState.onFavoriteClick(viewState)
 
         // THEN
@@ -151,10 +161,11 @@ internal class ProductsListViewModelTest {
             getProductsCategoryUseCase.execute(category, TypeSort.Popular)
         }.returns(Single.just(listOf(mockk())))
         val viewModel = getViewModel()
-        viewModel.categoryName = category
+        viewModel.category = category
+        lifecycle.addObserver(viewModel)
 
         // WHEN
-        viewModel.getProducts()
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         // THEN
         assertNotNull(viewModel.productsList.value)
@@ -168,11 +179,12 @@ internal class ProductsListViewModelTest {
             getProductsCategoryUseCase.execute(category, TypeSort.Popular)
         }.returns(Single.error(mockk<Throwable>()))
         val viewModel = getViewModel()
-        viewModel.categoryName = category
+        viewModel.category = category
         val observer = viewModel.event.test()
+        lifecycle.addObserver(viewModel)
 
         // WHEN
-        viewModel.getProducts()
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         // THEN
         observer.assertValue {
@@ -188,11 +200,12 @@ internal class ProductsListViewModelTest {
             getProductsCategoryUseCase.execute(category, TypeSort.Popular)
         }.returns(Single.just(mockk()))
         val viewModel = getViewModel()
-        viewModel.categoryName = category
+        viewModel.category = category
         viewModel.progressBar.observeForever(progressBar)
+        lifecycle.addObserver(viewModel)
 
         // WHEN
-        viewModel.getProducts()
+        lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         // THEN
         verifyOrder {
