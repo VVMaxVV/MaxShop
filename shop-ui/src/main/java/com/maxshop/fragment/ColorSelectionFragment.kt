@@ -38,8 +38,6 @@ internal class ColorSelectionFragment : BaseBottomSheetFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.mapColors(args.colors.toList())
-
         viewModel.event.observe(viewLifecycleOwner) {
             when (it) {
                 is ColorSelectionViewModel.Event.Close -> findNavController().popBackStack()
