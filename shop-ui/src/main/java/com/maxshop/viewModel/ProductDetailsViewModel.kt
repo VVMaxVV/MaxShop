@@ -42,7 +42,7 @@ internal class ProductDetailsViewModel @Inject constructor(
         getProduct()
     }
 
-    fun getProduct() {
+    private fun getProduct() {
         try {
             viewModelScope.launch {
                 _progressBar.value = true

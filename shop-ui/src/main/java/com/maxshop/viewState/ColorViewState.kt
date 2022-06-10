@@ -18,10 +18,6 @@ internal class ColorViewState(
         }
     }
 
-    fun onClick(viewState: ColorViewState) {
-        _uiEvent.trySend(Event.OnClick(viewState))
-    }
-
     override fun isSameItem(other: Any): Boolean {
         if (this === other) return true
         if (javaClass != other.javaClass) return false
