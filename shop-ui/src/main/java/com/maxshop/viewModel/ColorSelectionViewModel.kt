@@ -16,7 +16,7 @@ internal class ColorSelectionViewModel @Inject constructor(
     private val colorStream: ColorStream
 ) : BaseViewModel() {
     sealed class Event {
-        object CloseDialog : Event()
+        object Close : Event()
     }
 
     private val _listColors = MutableLiveData<List<RecyclerItem>>()
@@ -25,7 +25,7 @@ internal class ColorSelectionViewModel @Inject constructor(
     private val _event = SingleLiveEvent<Event>()
     val event: LiveData<Event> get() = _event
 
-    fun getColors(sizes: List<String>) {
+    fun mapColors(sizes: List<String>) {
         viewModelScope.launch {
             _listColors.value = sizes.map {
                 colorMapper.toRecyclerItem(
@@ -35,7 +35,7 @@ internal class ColorSelectionViewModel @Inject constructor(
                                 when (it) {
                                     is BaseProductOptionsViewState.Event.OnClick -> {
                                         colorStream.post(it.viewState.text)
-                                        _event.value = Event.CloseDialog
+                                        _event.value = Event.Close
                                     }
                                 }
                             }

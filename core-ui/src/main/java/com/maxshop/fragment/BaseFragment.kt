@@ -20,10 +20,10 @@ abstract class BaseFragment : DaggerFragment() {
         Toast.makeText(requireContext(), text, duration).show()
     }
 
-    open fun bottomNavVisibility(): Boolean = true
+    open fun getBottomNavVisibility(): Boolean = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bottomNavMenuStream.postVisibility(bottomNavVisibility())
+        bottomNavMenuStream.post(getBottomNavVisibility())
     }
 }

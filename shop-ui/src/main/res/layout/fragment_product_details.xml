@@ -18,11 +18,12 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view"
+            onError="@{viewModel.errorLoading}"
             android:layout_width="match_parent"
             android:layout_height="@dimen/normal_0"
             android:scaleType="centerCrop"
             android:src="@{viewModel.product.imageUrl}"
-            app:layout_constraintDimensionRatio="H,15:11"
+            app:layout_constraintDimensionRatio="@string/pdp_image_dimension_ratio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -63,9 +64,9 @@
             <ToggleButton
                 android:id="@+id/favorite_button"
                 style="@style/ToggleFavorite"
+                visibleIfNotNull="@{viewModel.product}"
                 android:layout_marginTop="@dimen/normal_100"
                 android:layout_marginEnd="@dimen/normal_100"
-                visibleIfNotNull="@{viewModel.product}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

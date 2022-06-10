@@ -13,32 +13,27 @@ import com.maxshop.viewModel.ColorSelectionViewModel
 internal class ColorSelectionFragment : BaseBottomSheetFragment() {
     private val args: ColorSelectionFragmentArgs by navArgs()
 
-    private var binding: FragmentColorSelectionBinding? = null
-
     val viewModel: ColorSelectionViewModel by viewModels { factory }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentColorSelectionBinding.inflate(inflater, container, false).apply {
+    ): View {
+        return FragmentColorSelectionBinding.inflate(inflater, container, false).apply {
             viewModel = this@ColorSelectionFragment.viewModel
             lifecycleOwner = this@ColorSelectionFragment
-        }
-        return binding?.root
+        }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getColors(args.colors.toList())
+        viewModel.mapColors(args.colors.toList())
 
         viewModel.event.observe(viewLifecycleOwner) {
             when (it) {
-                is ColorSelectionViewModel.Event.CloseDialog -> {
-                    findNavController().popBackStack()
-                }
+                is ColorSelectionViewModel.Event.Close -> findNavController().popBackStack()
             }
         }
     }

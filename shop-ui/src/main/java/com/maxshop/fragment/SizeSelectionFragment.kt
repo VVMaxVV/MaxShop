@@ -13,30 +13,27 @@ import com.maxshop.viewModel.SizeSelectionViewModel
 internal class SizeSelectionFragment : BaseBottomSheetFragment() {
     private val args: SizeSelectionFragmentArgs by navArgs()
 
-    private var binding: FragmentSizeSelectionBinding? = null
-
     val viewModel: SizeSelectionViewModel by viewModels { factory }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSizeSelectionBinding.inflate(inflater, container, false).apply {
+    ): View {
+        return FragmentSizeSelectionBinding.inflate(inflater, container, false).apply {
             viewModel = this@SizeSelectionFragment.viewModel
             lifecycleOwner = this@SizeSelectionFragment
-        }
-        return binding?.root
+        }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getSizes(args.sizes.toList())
+        viewModel.mapSizes(args.sizes.toList())
 
         viewModel.event.observe(viewLifecycleOwner) {
             when (it) {
-                is SizeSelectionViewModel.Event.CloseDialog -> findNavController().popBackStack()
+                is SizeSelectionViewModel.Event.Close -> findNavController().popBackStack()
             }
         }
     }

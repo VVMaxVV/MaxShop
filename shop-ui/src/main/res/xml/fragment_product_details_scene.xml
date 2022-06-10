@@ -10,7 +10,7 @@
             android:layout_height="@dimen/normal_0"
             android:alpha="1"
             android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="H,15:11"
+            app:layout_constraintDimensionRatio="@string/pdp_image_dimension_ratio"
             motion:layout_constraintTop_toTopOf="parent" />
         <Constraint
             android:id="@+id/details_root"
@@ -24,7 +24,7 @@
             android:layout_height="@dimen/normal_0"
             android:alpha="0"
             android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="H,15:11"
+            app:layout_constraintDimensionRatio="@string/pdp_image_dimension_ratio"
             app:layout_constraintTop_toTopOf="parent" />
         <Constraint
             android:id="@+id/details_root"

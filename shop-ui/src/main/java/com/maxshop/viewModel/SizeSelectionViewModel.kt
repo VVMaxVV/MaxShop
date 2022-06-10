@@ -17,7 +17,7 @@ internal class SizeSelectionViewModel @Inject constructor(
     private val sizeStream: SizeStream
 ) : BaseViewModel() {
     sealed class Event {
-        object CloseDialog : Event()
+        object Close : Event()
     }
 
     private val _listSizes = MutableLiveData<List<RecyclerItem>>()
@@ -26,7 +26,7 @@ internal class SizeSelectionViewModel @Inject constructor(
     private val _event = MutableLiveData<Event>()
     val event: LiveData<Event> get() = _event
 
-    fun getSizes(sizes: List<String>) {
+    fun mapSizes(sizes: List<String>) {
         viewModelScope.launch {
             _listSizes.value = sizes.map {
                 sizeMapper.toRecyclerItem(
@@ -35,7 +35,7 @@ internal class SizeSelectionViewModel @Inject constructor(
                             when (it) {
                                 is BaseProductOptionsViewState.Event.OnClick -> {
                                     sizeStream.post(it.viewState.text)
-                                    _event.value = Event.CloseDialog
+                                    _event.value = Event.Close
                                 }
                             }
                         }.launchIn(this)

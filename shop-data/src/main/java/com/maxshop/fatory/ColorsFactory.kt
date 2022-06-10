@@ -1,13 +1,14 @@
 package com.maxshop.fatory
 
-import com.maxshop.const.CategoryConst
+import com.maxshop.const.ELECTRONICS
+import com.maxshop.const.JEWELERY
 import java.util.Locale
 import javax.inject.Inject
 
 internal class ColorsFactory @Inject constructor() {
     fun get(category: String): List<String>? {
         return when (category.lowercase(Locale.getDefault())) {
-            CategoryConst.ELECTRONICS, CategoryConst.JEWELERY -> null
+            ELECTRONICS, JEWELERY -> null
             else -> {
                 when ((0..4).random()) {
                     0 -> listOf("Fuchsia", "Magenta", "Yellow")

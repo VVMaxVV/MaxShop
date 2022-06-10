@@ -5,6 +5,7 @@ import com.maxshop.fatory.SizesFactory
 import com.maxshop.model.ProductResponse
 import com.maxshop.model.product.DetailedProduct
 import com.maxshop.model.product.SimplifiedProduct
+import com.maxshop.util.formatPrice
 import java.util.Locale
 import javax.inject.Inject
 
@@ -18,13 +19,13 @@ internal class ProductResponseMapper @Inject constructor(
         product.image,
         product.rating.rate,
         product.rating.count,
-        String.format("%.2f", product.price)
+        String.formatPrice(product.price)
     )
 
     fun toDetailedProduct(product: ProductResponse) = DetailedProduct(
         product.id,
         product.title,
-        String.format("%.2f", product.price),
+        String.formatPrice(product.price),
         product.description,
         product.category.replaceFirstChar {
             if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()

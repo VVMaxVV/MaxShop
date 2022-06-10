@@ -33,6 +33,9 @@ internal class ProductDetailsViewModel @Inject constructor(
     private val _event = MutableLiveData<Event>()
     val event: LiveData<Event> get() = _event
 
+    private val _errorLoading = MutableLiveData(false)
+    val errorLoading: LiveData<Boolean> get() = _errorLoading
+
     fun getProduct(id: Int) {
         productId = id
         viewModelScope.launch {
@@ -42,7 +45,8 @@ internal class ProductDetailsViewModel @Inject constructor(
                     _product.value = it
                 }
             } catch (t: Throwable) {
-                _event.value = Event.ReceivedThrowable(t)
+                _event.value = Event.OnError(t)
+                _errorLoading.value = true
             }
             sizeStream.stream().onEach {
                 _size.value = it
@@ -65,6 +69,6 @@ internal class ProductDetailsViewModel @Inject constructor(
     sealed class Event {
         data class ShowSizes(val sizes: List<String>) : Event()
         data class ShowColors(val colors: List<String>) : Event()
-        data class ReceivedThrowable(val throwable: Throwable) : Event()
+        data class OnError(val throwable: Throwable) : Event()
     }
 }

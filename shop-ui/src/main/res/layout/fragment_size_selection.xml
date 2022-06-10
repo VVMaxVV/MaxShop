@@ -18,11 +18,9 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="@dimen/normal_375"
-            android:layout_height="@dimen/normal_25"
-            android:layout_marginTop="@dimen/normal_100"
-            app:cardBackgroundColor="@color/colorGray" />
+        <View
+            style="@style/LineProductOptionMenu"
+            android:layout_marginTop="@dimen/normal_100" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view"

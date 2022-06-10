@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/normal_350"
             android:background="@color/colorBottomNavMenu"
-            android:visibility="@{bottomMenuStream.streamVisibility()}"
+            android:visibility="@{bottomMenuStream.stream()}"
             app:itemIconTint="@drawable/selector_bottom_nav_bar"
             app:itemTextColor="@drawable/selector_bottom_nav_bar"
             app:labelVisibilityMode="labeled"

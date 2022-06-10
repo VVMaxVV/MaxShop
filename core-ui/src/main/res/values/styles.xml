@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--suppress CheckTagEmptyBody -->
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <style name="Headline" parent="Widget.AppCompat.TextView">
@@ -90,6 +90,12 @@
         <item name="android:paddingEnd">@dimen/normal_75</item>
         <item name="android:layout_width">@dimen/normal_875</item>
         <item name="android:layout_height">@dimen/normal_250</item>
+    </style>
+
+    <style name="LineProductOptionMenu">
+        <item name="android:background">@drawable/shape_product_option_line</item>
+        <item name="android:layout_width">@dimen/normal_375</item>
+        <item name="android:layout_height">@dimen/normal_25</item>
     </style>
 
 </resources>

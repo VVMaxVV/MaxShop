@@ -7,9 +7,9 @@ import javax.inject.Singleton
 @Singleton
 class BottomNavMenuStream @Inject constructor(stream: LiveDataEventStream<Boolean>) {
     private val visibilityStream = stream
-    fun postVisibility(visibility: Boolean) {
+    fun post(visibility: Boolean) {
         visibilityStream.post(visibility)
     }
 
-    fun streamVisibility() = visibilityStream.stream()
+    fun stream() = visibilityStream.stream()
 }
