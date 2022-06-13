@@ -79,6 +79,6 @@ internal class ColorSelectionViewModelTest {
         colorViewState.onClick(colorViewState)
 
         // THEN
-        assertTrue(viewModel.event.value is ColorSelectionViewModel.Event.CloseDialog)
+        assertTrue(viewModel.event.value is ColorSelectionViewModel.Event.Close)
     }
 }

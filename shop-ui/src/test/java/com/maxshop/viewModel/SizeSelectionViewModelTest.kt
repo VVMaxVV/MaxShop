@@ -79,6 +79,6 @@ internal class SizeSelectionViewModelTest {
         sizeViewState.onClick(sizeViewState)
 
         // THEN
-        assertTrue(viewModel.event.value is SizeSelectionViewModel.Event.CloseDialog)
+        assertTrue(viewModel.event.value is SizeSelectionViewModel.Event.Close)
     }
 }
