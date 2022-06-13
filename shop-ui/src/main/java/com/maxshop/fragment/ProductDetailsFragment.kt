@@ -50,6 +50,7 @@ internal class ProductDetailsFragment : BaseFragment() {
                 }
             }
         }
-        viewModel.getProduct(args.id)
+        viewModel.id = args.id
+        viewModel.getProduct()
     }
 }

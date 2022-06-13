@@ -17,7 +17,7 @@ internal class ProductDetailsViewModel @Inject constructor(
     private val sizeStream: SizeStream,
     private val colorStream: ColorStream
 ) : BaseViewModel() {
-    private var productId: Int? = null
+    var id: Int? = null
 
     private val _size = MutableLiveData<String?>(null)
     val size: LiveData<String?> get() = _size
@@ -27,26 +27,29 @@ internal class ProductDetailsViewModel @Inject constructor(
 
     private val _progressBar = MutableLiveData<Boolean>()
 
-    private val _product = MutableLiveData<DetailedProduct>()
-    val product: LiveData<DetailedProduct> get() = _product
+    private val _detailedProduct = MutableLiveData<DetailedProduct>()
+    val detailedProduct: LiveData<DetailedProduct> get() = _detailedProduct
 
     private val _event = MutableLiveData<Event>()
     val event: LiveData<Event> get() = _event
 
-    private val _errorLoading = MutableLiveData(false)
-    val errorLoading: LiveData<Boolean> get() = _errorLoading
+    private val _visibilityError = MutableLiveData(false)
+    val visibilityError: LiveData<Boolean> get() = _visibilityError
 
-    fun getProduct(id: Int) {
-        productId = id
+    fun getProduct() {
         viewModelScope.launch {
             _progressBar.value = true
+            _visibilityError.value = false
             try {
-                getProductUseCase.execute(id).also {
-                    _product.value = it
-                }
+                getProductUseCase.execute(
+                    id ?: throw NullPointerException("Id cannot be null")
+                )
+                    .also {
+                        _detailedProduct.value = it
+                    }
             } catch (t: Throwable) {
                 _event.value = Event.OnError(t)
-                _errorLoading.value = true
+                _visibilityError.value = true
             }
             sizeStream.stream().onEach {
                 _size.value = it
@@ -59,11 +62,11 @@ internal class ProductDetailsViewModel @Inject constructor(
     }
 
     fun showSizes() {
-        _event.value = product.value?.sizesList?.let { it -> Event.ShowSizes(it) }
+        _event.value = detailedProduct.value?.sizesList?.let { it -> Event.ShowSizes(it) }
     }
 
     fun showColors() {
-        _event.value = product.value?.colorsList?.let { it -> Event.ShowColors(it) }
+        _event.value = detailedProduct.value?.colorsList?.let { it -> Event.ShowColors(it) }
     }
 
     sealed class Event {
