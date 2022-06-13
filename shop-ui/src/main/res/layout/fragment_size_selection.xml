@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.maxshop.viewModel.SizeSelectionViewModel" />
+
+        <import type="com.maxshop.adapter.Decorations" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <View
+            style="@style/DragIndicator"
+            android:layout_marginTop="@dimen/normal_100" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view"
+            style="@style/SemiBold_16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_100"
+            android:background="@android:color/transparent"
+            android:text="@string/label_select_size" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            items="@{viewModel.itemsList}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/normal_25"
+            android:layout_marginVertical="@dimen/normal_150"
+            app:addItemDecoration="@{Decorations.gridSpaces(@dimen/normal_75,@dimen/normal_100)}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            tools:listitem="@layout/item_selection_product_option" />
+
+    </LinearLayout>
+</layout>

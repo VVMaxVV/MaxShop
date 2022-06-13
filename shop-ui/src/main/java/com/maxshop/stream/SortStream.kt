@@ -1,4 +1,4 @@
-package com.maxshop
+package com.maxshop.stream
 
 import com.maxshop.model.TypeSort
 import com.maxshop.utils.eventStream.RxEventStream

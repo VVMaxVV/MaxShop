@@ -12,7 +12,6 @@ internal class SimplifiedProductMapper @Inject constructor() {
     fun toPLPItemViewState(product: SimplifiedProduct): PLPItemViewState {
         return PLPItemViewState(
             product.id,
-            product.category,
             product.title,
             product.imageUrl,
             product.rating,

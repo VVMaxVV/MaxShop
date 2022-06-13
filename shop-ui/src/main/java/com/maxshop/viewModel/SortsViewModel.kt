@@ -1,13 +1,14 @@
 package com.maxshop.viewModel
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.internetshop.presentation.utils.SingleLiveEvent
-import com.maxshop.SortStream
 import com.maxshop.mapper.SortMapper
 import com.maxshop.model.RecyclerItem
 import com.maxshop.model.TypeSort
+import com.maxshop.stream.SortStream
 import com.maxshop.usecase.GetSortsUseCase
+import com.maxshop.utils.SingleLiveEvent
 import com.maxshop.viewState.SortViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.plusAssign
@@ -19,8 +20,9 @@ internal class SortsViewModel @Inject constructor(
     private val getSortsUseCase: GetSortsUseCase,
     private val sortMapper: SortMapper,
     private val sortStream: SortStream
-) : BaseViewModel() {
+) : BaseLifecyclerViewModel() {
     var activePosition = 0
+    var activeSort: TypeSort = TypeSort.Popular
 
     private val _listSorts = MutableLiveData<List<RecyclerItem>>()
     val listSorts: LiveData<List<RecyclerItem>> get() = _listSorts
@@ -28,7 +30,12 @@ internal class SortsViewModel @Inject constructor(
     private val _event = SingleLiveEvent<Event>()
     val event: LiveData<Event> get() = _event
 
-    fun getSortsList(activeSort: TypeSort) {
+    override fun onCreate(owner: LifecycleOwner) {
+        super.onCreate(owner)
+        getSortsList(activeSort)
+    }
+
+    private fun getSortsList(activeSort: TypeSort) {
         compositeDisposable += getSortsUseCase.execute()
             .subscribeOn(Schedulers.io())
             .map {

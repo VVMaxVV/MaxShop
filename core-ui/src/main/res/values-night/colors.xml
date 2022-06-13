@@ -11,8 +11,10 @@
     <color name="colorBottomNavMenu">#1E1F28</color>
     <color name="colorIcons">#DADADA</color>
     <color name="colorFilterBackground">#1E1F28</color>
-    <color name="colorFavoriteShadow">#303030</color>
+    <color name="colorFavoriteShadow">@color/colorBackground</color>
     <color name="colorFavoriteBackground">#2A2C36</color>
     <color name="colorFavoritePrimary">#EF3651</color>
     <color name="colorHeaderFragment">#1E1F28</color>
+    <color name="colorBackgroundOptionMenu">@color/colorBackground</color>
+    <color name="colorDropdownArrow">@color/colorGray</color>
 </resources>

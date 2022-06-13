@@ -27,7 +27,7 @@ import javax.inject.Singleton
         ShopModule::class,
         BagModule::class,
         FavoriteModule::class,
-        ProfileModule::class,
+        ProfileModule::class
     ]
 )
 interface AppComponent {

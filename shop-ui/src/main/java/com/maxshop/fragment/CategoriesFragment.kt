@@ -13,6 +13,10 @@ import com.maxshop.viewModel.CategoriesViewModel
 internal class CategoriesFragment : BaseFragment() {
     private val viewModel: CategoriesViewModel by viewModels { factory }
 
+    override fun addLifecyclerObserver() {
+        lifecycle.addObserver(viewModel)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,8 +35,6 @@ internal class CategoriesFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.getCategories()
 
         viewModel.events.observe(viewLifecycleOwner) {
             when (it) {

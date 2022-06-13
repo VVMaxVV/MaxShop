@@ -19,9 +19,17 @@ fun setImage(view: AppCompatImageView, imageUrl: String?) {
         .into(view)
 }
 
+@BindingAdapter("onError")
+fun setImage(view: AppCompatImageView, boolean: Boolean) {
+    if (boolean) Picasso.with(view.context)
+        .load(R.drawable.ic_error)
+        .fit()
+        .into(view)
+}
+
 @BindingAdapter("android:visibility")
-fun setVisibility(view: View, visible: Boolean) {
-    view.visibility = if (visible) View.VISIBLE else View.GONE
+fun setVisibility(view: View, visible: Boolean?) {
+    view.visibility = if (visible == true) View.VISIBLE else View.GONE
 }
 
 @BindingAdapter("items")

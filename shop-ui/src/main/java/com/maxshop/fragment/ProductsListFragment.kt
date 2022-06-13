@@ -18,6 +18,14 @@ internal class ProductsListFragment : BaseFragment() {
 
     private val viewModel: ProductsListViewModel by viewModels { factory }
 
+    override fun addLifecyclerObserver() {
+        lifecycle.addObserver(
+            viewModel.also {
+                it.category = args.category
+            }
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,11 +42,6 @@ internal class ProductsListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.categoryName = args.category
-
-        viewModel.getActiveSort()
-
-        viewModel.getProducts()
 
         viewModel.event.observe(viewLifecycleOwner) {
             when (it) {
@@ -48,8 +51,10 @@ internal class ProductsListFragment : BaseFragment() {
                             viewModel.sort.value ?: TypeSort.Error
                         )
                 )
-                is ProductsListViewModel.Event.OpenProduct ->
-                    showToastMessage("Open product (id: ${it.id})")
+                is ProductsListViewModel.Event.OpenProduct -> findNavController().navigate(
+                    ProductsListFragmentDirections
+                        .actionProductsListFragmentToProductDetailsFragment(it.id)
+                )
             }
         }
     }
