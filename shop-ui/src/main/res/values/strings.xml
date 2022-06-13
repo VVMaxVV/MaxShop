@@ -12,4 +12,6 @@
     <string name="label_color">Color</string>
     <string name="label_add_to_cart">ADD TO CART</string>
     <string name="pdp_image_dimension_ratio">H,15:11</string>
+    <string name="label_error_has_occurred">An error has occurred</string>
+    <string name="label_try_again">Try again</string>
 </resources>

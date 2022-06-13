@@ -92,7 +92,7 @@
         <item name="android:layout_height">@dimen/normal_250</item>
     </style>
 
-    <style name="LineProductOptionMenu">
+    <style name="DragIndicator">
         <item name="android:background">@drawable/shape_product_option_line</item>
         <item name="android:layout_width">@dimen/normal_375</item>
         <item name="android:layout_height">@dimen/normal_25</item>

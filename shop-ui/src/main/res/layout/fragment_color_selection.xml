@@ -19,7 +19,7 @@
         android:orientation="vertical">
 
         <View
-            style="@style/LineProductOptionMenu"
+            style="@style/DragIndicator"
             android:layout_marginTop="@dimen/normal_100" />
 
         <androidx.appcompat.widget.AppCompatTextView
