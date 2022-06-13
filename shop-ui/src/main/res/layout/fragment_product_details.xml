@@ -12,8 +12,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBackground">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,6 +71,7 @@
                 android:id="@+id/details_root"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normal_0"
+                android:background="@color/colorBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/image_view">
 
