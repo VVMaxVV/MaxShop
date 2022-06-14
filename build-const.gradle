@@ -1,4 +1,9 @@
 ext {
+    // Coroutines
+    coroutines_android = '1.5.2'
+    kotlin_coroutines_version = '1.6.0'
+    lifecycle_livedata = '2.4.1'
+
     // Navigation
     nav_version = "2.4.2"
 
@@ -44,8 +49,8 @@ ext {
     picasso_version = '2.4.0'
 
     // DataBinding
-    databinding_version='3.2.0'
+    databinding_version = '3.2.0'
 
     // ViewModel
-    lifecycle_viewmodel_ktx='2.4.1'
+    lifecycle_viewmodel_ktx = '2.4.1'
 }

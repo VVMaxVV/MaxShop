@@ -2,10 +2,10 @@ package com.maxshop.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.internetshop.presentation.utils.SingleLiveEvent
 import com.maxshop.mapper.CategoryMapper
 import com.maxshop.model.RecyclerItem
 import com.maxshop.usecase.GetCategoriesUseCase
+import com.maxshop.utils.SingleLiveEvent
 import com.maxshop.viewState.CategoryViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.plusAssign

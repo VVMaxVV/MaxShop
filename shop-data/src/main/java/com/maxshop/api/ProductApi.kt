@@ -10,4 +10,9 @@ internal interface ProductApi {
     fun getProducts(
         @Path("categoryName") categoryName: String
     ): Single<List<ProductResponse>>
+
+    @GET("products/{id}")
+    suspend fun getProduct(
+        @Path("id") id: Int
+    ): ProductResponse
 }

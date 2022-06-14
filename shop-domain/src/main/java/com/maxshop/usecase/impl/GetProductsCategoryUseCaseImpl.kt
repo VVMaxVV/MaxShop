@@ -1,6 +1,5 @@
 package com.maxshop.usecase.impl
 
-import com.maxshop.mapper.ProductMapper
 import com.maxshop.model.TypeSort
 import com.maxshop.model.product.SimplifiedProduct
 import com.maxshop.repository.ProductRepository
@@ -9,14 +8,9 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 internal class GetProductsCategoryUseCaseImpl @Inject constructor(
-    private val productRepository: ProductRepository,
-    private val productMapper: ProductMapper
+    private val productRepository: ProductRepository
 ) : GetProductsCategoryUseCase {
     override fun execute(category: String, typeSort: TypeSort): Single<List<SimplifiedProduct>> {
-        return productRepository.getProducts(category, typeSort).map { productList ->
-            productList.map {
-                productMapper.toSimpleProduct(it)
-            }
-        }
+        return productRepository.getSimplifiedProducts(category, typeSort)
     }
 }

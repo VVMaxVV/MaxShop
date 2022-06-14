@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.maxshop.RxAndroidSchedulerRule
 import com.jraska.livedata.test
-import com.maxshop.SortStream
 import com.maxshop.mapper.SimplifiedProductMapper
 import com.maxshop.model.TypeSort
+import com.maxshop.stream.SortStream
 import com.maxshop.usecase.GetProductsCategoryUseCase
 import com.maxshop.viewState.PLPItemViewState
 import io.mockk.MockKAnnotations
@@ -86,7 +86,6 @@ internal class ProductsListViewModelTest {
             0,
             "",
             "",
-            "",
             0f,
             0,
             "",
@@ -117,7 +116,6 @@ internal class ProductsListViewModelTest {
         // GIVEN
         val viewState = PLPItemViewState(
             0,
-            "",
             "",
             "",
             0f,

@@ -7,7 +7,6 @@ import io.reactivex.subjects.PublishSubject
 
 internal class PLPItemViewState(
     val id: Int,
-    val category: String,
     val title: String,
     val imageUrl: String,
     val rating: Float,
@@ -16,7 +15,7 @@ internal class PLPItemViewState(
     val favorite: MutableLiveData<Boolean>
 ) : RecyclerItemComparator {
     sealed class Event {
-        data class OnClicked(val id: Int, val category: String, val title: String) : Event()
+        data class OnClicked(val id: Int, val title: String) : Event()
         data class OnFavoriteClicked(val id: Int, val buttonState: Boolean?) : Event()
     }
 
@@ -24,7 +23,7 @@ internal class PLPItemViewState(
     val events: Observable<Event> = uiEvent.hide()
 
     fun onClick(product: PLPItemViewState) {
-        uiEvent.onNext(Event.OnClicked(product.id, product.category, product.title))
+        uiEvent.onNext(Event.OnClicked(product.id, product.title))
     }
 
     fun onFavoriteClick(product: PLPItemViewState) {

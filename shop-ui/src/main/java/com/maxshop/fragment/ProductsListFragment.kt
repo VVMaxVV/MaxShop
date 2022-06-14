@@ -48,8 +48,10 @@ internal class ProductsListFragment : BaseFragment() {
                             viewModel.sort.value ?: TypeSort.Error
                         )
                 )
-                is ProductsListViewModel.Event.OpenProduct ->
-                    showToastMessage("Open product (id: ${it.id})")
+                is ProductsListViewModel.Event.OpenProduct -> findNavController().navigate(
+                    ProductsListFragmentDirections
+                        .actionProductsListFragmentToProductDetailsFragment(it.id)
+                )
             }
         }
     }

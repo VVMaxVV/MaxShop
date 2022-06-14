@@ -1,7 +1,7 @@
 package com.maxshop.model
 
 internal data class ProductResponse(
-    val id: String,
+    val id: Int,
     val title: String,
     val price: Float,
     val description: String,

@@ -50,6 +50,8 @@
     </style>
 
     <style name="ToggleFavorite" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="android:layout_width">@dimen/normal_225</item>
+        <item name="android:layout_height">@dimen/normal_225</item>
         <item name="android:background">@drawable/selector_toggle_favorite</item>
         <item name="android:textOff"></item>
         <item name="android:textOn"></item>
@@ -72,14 +74,28 @@
         <item name="android:isIndicator">true</item>
     </style>
 
-    <style name="AppBottomSheetDialogTheme"
-        parent="Theme.Design.Light.BottomSheetDialog">
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>
 
-    <style name="AppModalStyle"
-        parent="Widget.Design.BottomSheet.Modal">
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet_background</item>
+    </style>
+
+    <style name="ProductOptionButton" parent="Medium_16sp">
+        <item name="android:background">@drawable/product_options_menu</item>
+        <item name="android:paddingStart">@dimen/normal_75</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawableEnd">@drawable/ic_dropdown_arrow</item>
+        <item name="android:paddingEnd">@dimen/normal_75</item>
+        <item name="android:layout_width">@dimen/normal_875</item>
+        <item name="android:layout_height">@dimen/normal_250</item>
+    </style>
+
+    <style name="DragIndicator">
+        <item name="android:background">@drawable/shape_product_option_line</item>
+        <item name="android:layout_width">@dimen/normal_375</item>
+        <item name="android:layout_height">@dimen/normal_25</item>
     </style>
 
 </resources>

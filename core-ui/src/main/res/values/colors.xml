@@ -20,4 +20,6 @@
     <color name="colorFavoriteBackground">#FFFFFF</color>
     <color name="colorFavoritePrimary">#DB3022</color>
     <color name="colorHeaderFragment">#FFFFFF</color>
+    <color name="colorBackgroundOptionMenu">@color/colorWhite</color>
+    <color name="colorDropdownArrow">#000000</color>
 </resources>
