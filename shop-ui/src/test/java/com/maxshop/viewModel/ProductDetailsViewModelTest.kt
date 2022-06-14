@@ -65,7 +65,7 @@ internal class ProductDetailsViewModelTest {
     private fun getViewModel() =
         ProductDetailsViewModel(getProductUseCase, sizeStream, colorStream).also {
             it.progressBar.observeForever(progressBar)
-            it.visibilityError.observeForever(visibilityError)
+            it.errorVisibility.observeForever(visibilityError)
         }
 
     private val product = DetailedProduct(
@@ -227,7 +227,7 @@ internal class ProductDetailsViewModelTest {
 
         // THEN
         assertTrue(viewModel.event.value == ProductDetailsViewModel.Event.OnError(throwable))
-        assertTrue(viewModel.visibilityError.value == true)
+        assertTrue(viewModel.errorVisibility.value == true)
         verifyOrder {
             progressBar.onChanged(true)
             progressBar.onChanged(false)
@@ -276,6 +276,6 @@ internal class ProductDetailsViewModelTest {
 
         // THEN
         assertTrue((viewModel.event.value as ProductDetailsViewModel.Event.OnError).throwable is NullPointerException)
-        assertTrue(viewModel.visibilityError.value == true)
+        assertTrue(viewModel.errorVisibility.value == true)
     }
 }

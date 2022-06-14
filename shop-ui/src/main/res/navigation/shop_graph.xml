@@ -51,7 +51,7 @@
             app:destination="@id/sizeSelectionFragment" />
         <action
             android:id="@+id/action_PDP_to_colorSelectionFragment"
-            app:destination="@id/colorsFragment" />
+            app:destination="@id/colorSelectionFragment" />
     </fragment>
     <dialog
         android:id="@+id/sizeSelectionFragment"
