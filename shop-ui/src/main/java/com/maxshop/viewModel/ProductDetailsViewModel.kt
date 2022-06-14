@@ -33,13 +33,13 @@ internal class ProductDetailsViewModel @Inject constructor(
     private val _event = MutableLiveData<Event>()
     val event: LiveData<Event> get() = _event
 
-    private val _visibilityError = MutableLiveData(false)
-    val visibilityError: LiveData<Boolean> get() = _visibilityError
+    private val _errorVisibility = MutableLiveData(false)
+    val errorVisibility: LiveData<Boolean> get() = _errorVisibility
 
     fun getProduct() {
         viewModelScope.launch {
             _progressBar.value = true
-            _visibilityError.value = false
+            _errorVisibility.value = false
             try {
                 getProductUseCase.execute(
                     id ?: throw NullPointerException("Id cannot be null")
@@ -49,7 +49,7 @@ internal class ProductDetailsViewModel @Inject constructor(
                     }
             } catch (t: Throwable) {
                 _event.value = Event.OnError(t)
-                _visibilityError.value = true
+                _errorVisibility.value = true
             }
             sizeStream.stream().onEach {
                 _size.value = it

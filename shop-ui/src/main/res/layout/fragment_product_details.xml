@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="@{viewModel.visibilityError}"
+            android:visibility="@{viewModel.errorVisibility}"
             tools:visibility="invisible">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -53,7 +53,7 @@
             android:id="@+id/motion_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@{!viewModel.visibilityError}"
+            android:visibility="@{!viewModel.errorVisibility}"
             app:layoutDescription="@xml/fragment_product_details_scene">
 
             <androidx.appcompat.widget.AppCompatImageView

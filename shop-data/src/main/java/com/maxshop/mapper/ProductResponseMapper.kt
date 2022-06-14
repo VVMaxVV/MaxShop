@@ -19,13 +19,13 @@ internal class ProductResponseMapper @Inject constructor(
         product.image,
         product.rating.rate,
         product.rating.count,
-        String.formatPrice(product.price)
+        product.price.formatPrice()
     )
 
     fun toDetailedProduct(product: ProductResponse) = DetailedProduct(
         product.id,
         product.title,
-        String.formatPrice(product.price),
+        product.price.formatPrice(),
         product.description,
         product.category.replaceFirstChar {
             if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
