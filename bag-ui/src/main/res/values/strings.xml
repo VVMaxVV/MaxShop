@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="label_bag">BAG</string>
+    <string name="label_color">Color:</string>
+    <string name="label_size">Size:</string>
+    <string name="label_zero">0</string>
+    <string name="label_check_out">CHECK OUT</string>
+    <string name="label_total_amount">Total amount:</string>
+    <string name="toast_invalid_number_products">Invalid number of products</string>
+    <string name="toast_error_deleting_from_bag">An error has occurred. Unable to remove product from database</string>
 </resources>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.maxshop.viewState.BagProductViewState" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/normal_100"
+        android:onClick="@{()->viewState.onClick(viewState.id)}"
+        app:cardCornerRadius="@dimen/normal_50"
+        app:cardElevation="@dimen/normal_150"
+        tools:layout_marginVertical="12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:src="@{viewState.imageUrl}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@color/colorSale" />
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/SemiBold_16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/normal_75"
+                android:layout_marginTop="@dimen/normal_75"
+                android:maxLines="2"
+                android:text="@{viewState.title}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="T-Shirt\n" />
+
+            <TextView
+                android:id="@+id/color_label"
+                style="@style/Regular_12sp"
+                visibleIfNotNull="@{viewState.color}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_25"
+                android:text="@string/label_color"
+                android:textColor="@color/colorGray"
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+            <TextView
+                android:id="@+id/color_value"
+                style="@style/Regular_12sp"
+                visibleIfNotNull="@{viewState.color}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/normal_25"
+                android:text="@{viewState.color}"
+                app:layout_constraintBottom_toBottomOf="@+id/color_label"
+                app:layout_constraintStart_toEndOf="@id/color_label"
+                app:layout_constraintTop_toTopOf="@id/color_label"
+                tools:text="Black" />
+
+            <TextView
+                android:id="@+id/size_label"
+                style="@style/Regular_12sp"
+                visibleIfNotNull="@{viewState.size}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/normal_75"
+                android:text="@string/label_size"
+                android:textColor="@color/colorGray"
+                app:layout_constraintStart_toEndOf="@id/color_value"
+                app:layout_constraintTop_toTopOf="@id/color_label" />
+
+            <TextView
+                android:id="@+id/size_value"
+                style="@style/Regular_12sp"
+                visibleIfNotNull="@{viewState.size}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/normal_25"
+                android:text="@{viewState.size}"
+                app:layout_constraintBottom_toBottomOf="@id/size_label"
+                app:layout_constraintStart_toEndOf="@id/size_label"
+                app:layout_constraintTop_toTopOf="@id/size_label"
+                tools:text="M" />
+
+            <ImageView
+                android:id="@+id/minus"
+                android:layout_width="@dimen/normal_225"
+                android:layout_height="@dimen/normal_225"
+                android:layout_marginStart="@dimen/normal_75"
+                android:layout_marginTop="@dimen/normal_75"
+                android:layout_marginBottom="@dimen/normal_75"
+                android:background="@drawable/ic_bag_minus"
+                android:onClick="@{()->viewState.onMinusClick()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/image"
+                app:layout_constraintTop_toBottomOf="@id/color_value" />
+
+            <TextView
+                android:id="@+id/counter"
+                style="@style/Medium_16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/normal_100"
+                android:hint="@string/label_zero"
+                android:text='@{Integer.toString(viewState.amount)}'
+                app:layout_constraintBottom_toBottomOf="@id/minus"
+                app:layout_constraintStart_toEndOf="@id/minus"
+                app:layout_constraintTop_toTopOf="@id/minus"
+                tools:text="1" />
+
+            <ImageView
+                android:id="@+id/plus"
+                android:layout_width="@dimen/normal_225"
+                android:layout_height="@dimen/normal_225"
+                android:layout_marginStart="@dimen/normal_75"
+                android:onClick="@{()->viewState.onPlusClick()}"
+                android:src="@drawable/ic_bag_plus"
+                app:layout_constraintBottom_toBottomOf="@id/minus"
+                app:layout_constraintStart_toEndOf="@+id/counter"
+                app:layout_constraintTop_toTopOf="@id/minus" />
+
+            <TextView
+                android:id="@+id/price"
+                style="@style/Medium_16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/normal_100"
+                android:layout_marginBottom="@dimen/normal_125"
+                android:hint=""
+                android:text="@{@string/price(viewState.price)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="228$" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

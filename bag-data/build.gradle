@@ -2,7 +2,6 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -31,19 +30,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    dataBinding {
-        enabled = true
-    }
 }
 
 dependencies {
     implementation project(':core')
-    implementation project(':core-ui')
-    testImplementation project(':core-test')
-    api project(':shop-domain')
-    api project(':shop-data')
-
     implementation project(':bag-domain')
+
+    kapt "androidx.room:room-compiler:$room_version"
 
     // Dagger
     kapt "com.google.dagger:dagger-compiler:$dagger_version"

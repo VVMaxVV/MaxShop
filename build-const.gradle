@@ -1,4 +1,7 @@
 ext {
+    // Room
+    room_version = '2.4.2'
+
     // Coroutines
     coroutines_android = '1.5.2'
     kotlin_coroutines_version = '1.6.0'

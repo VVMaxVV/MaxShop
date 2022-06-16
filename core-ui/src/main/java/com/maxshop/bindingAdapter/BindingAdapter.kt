@@ -41,3 +41,8 @@ fun setItems(view: RecyclerView, items: List<RecyclerItem>?) {
     }
     adapter.submitList(items)
 }
+
+@BindingAdapter("visibleIfNotNull")
+internal fun setVisibilityIfNotNull(view: View, data: Any?) {
+    view.visibility = if (data != null) View.VISIBLE else View.INVISIBLE
+}

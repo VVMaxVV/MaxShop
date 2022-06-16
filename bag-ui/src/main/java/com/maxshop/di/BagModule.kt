@@ -4,7 +4,10 @@ import dagger.Module
 
 @Module(
     includes = [
-        BagFragmentModule::class
+        BagFragmentModule::class,
+        BagViewModelModule::class,
+        BagDomainModule::class,
+        BagDataModule::class
     ]
 )
 interface BagModule

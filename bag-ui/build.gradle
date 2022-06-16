@@ -39,6 +39,9 @@ dependencies {
     implementation project(':core')
     implementation project(':core-ui')
 
+    api project(':bag-domain')
+    api project(':bag-data')
+
     // Dagger
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"

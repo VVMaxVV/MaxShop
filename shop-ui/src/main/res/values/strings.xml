@@ -14,4 +14,6 @@
     <string name="pdp_image_dimension_ratio">H,15:11</string>
     <string name="label_error_has_occurred">An error has occurred</string>
     <string name="label_try_again">Try again</string>
+    
+    <string name="toast_select_all_product_options">Select all product options</string>
 </resources>
