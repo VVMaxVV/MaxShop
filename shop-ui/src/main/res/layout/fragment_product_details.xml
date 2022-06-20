@@ -198,6 +198,7 @@
                         android:layout_marginHorizontal="@dimen/normal_100"
                         android:layout_marginTop="@dimen/normal_125"
                         android:layout_marginBottom="@dimen/normal_175"
+                        android:onClick="@{()->viewModel.addToBag()}"
                         android:text="@string/label_add_to_cart" />
                 </FrameLayout>
 
