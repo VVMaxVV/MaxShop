@@ -1,5 +1,6 @@
 package com.maxshop.viewModel
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -14,20 +15,27 @@ import javax.inject.Inject
 internal class ColorSelectionViewModel @Inject constructor(
     private val colorMapper: ColorMapper,
     private val colorStream: ColorStream
-) : BaseViewModel() {
+) : BaseLifecycleViewModel() {
     sealed class Event {
         object Close : Event()
     }
 
-    private val _listColors = MutableLiveData<List<RecyclerItem>>()
-    val listColors: LiveData<List<RecyclerItem>> get() = _listColors
+    var colorsList: List<String> = emptyList()
+
+    private val _itemsList = MutableLiveData<List<RecyclerItem>>()
+    val itemsList: LiveData<List<RecyclerItem>> get() = _itemsList
 
     private val _event = SingleLiveEvent<Event>()
     val event: LiveData<Event> get() = _event
 
-    fun mapColors(sizes: List<String>) {
+    override fun onCreate(owner: LifecycleOwner) {
+        super.onCreate(owner)
+        mapColors(colorsList)
+    }
+
+    private fun mapColors(colors: List<String>) {
         viewModelScope.launch {
-            _listColors.value = sizes.map {
+            _itemsList.value = colors.map {
                 colorMapper.toRecyclerItem(
                     colorMapper.toSizeViewState(it).also {
                         viewModelScope.launch {

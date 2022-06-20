@@ -10,12 +10,21 @@ import androidx.navigation.fragment.navArgs
 import com.maxshop.shop_ui.databinding.FragmentBottomSheetSortBinding
 import com.maxshop.viewModel.SortsViewModel
 
-internal class SortsFragment : BaseBottomSheetFragment() {
+internal class SortsFragment : BaseBottomSheetFragment(), HasLifeCycleObserver {
     private val args: SortsFragmentArgs by navArgs()
 
     var binding: FragmentBottomSheetSortBinding? = null
 
     private val viewModel: SortsViewModel by viewModels { factory }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        viewModel.activeSort = args.activeSort
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun addLifecycleObserver() {
+        lifecycle.addObserver(viewModel)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,8 +44,6 @@ internal class SortsFragment : BaseBottomSheetFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.getSortsList(args.activeSort)
 
         viewModel.event.observe(viewLifecycleOwner) {
             when (it) {

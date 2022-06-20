@@ -1,5 +1,6 @@
 package com.maxshop.viewModel
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -15,20 +16,27 @@ import javax.inject.Inject
 internal class SizeSelectionViewModel @Inject constructor(
     private val sizeMapper: SizeMapper,
     private val sizeStream: SizeStream
-) : BaseViewModel() {
+) : BaseLifecycleViewModel() {
     sealed class Event {
         object Close : Event()
     }
 
-    private val _listSizes = MutableLiveData<List<RecyclerItem>>()
-    val listSizes: LiveData<List<RecyclerItem>> get() = _listSizes
+    var sizesList: List<String> = emptyList()
+
+    private val _itemsList = MutableLiveData<List<RecyclerItem>>()
+    val itemsList: LiveData<List<RecyclerItem>> get() = _itemsList
 
     private val _event = MutableLiveData<Event>()
     val event: LiveData<Event> get() = _event
 
-    fun mapSizes(sizes: List<String>) {
+    override fun onCreate(owner: LifecycleOwner) {
+        super.onCreate(owner)
+        mapSizes(sizesList)
+    }
+
+    private fun mapSizes(sizes: List<String>) {
         viewModelScope.launch {
-            _listSizes.value = sizes.map {
+            _itemsList.value = sizes.map {
                 sizeMapper.toRecyclerItem(
                     sizeMapper.toSizeViewState(it).also {
                         it.uiEvent.onEach {

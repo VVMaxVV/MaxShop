@@ -51,7 +51,7 @@
             app:destination="@id/sizeSelectionFragment" />
         <action
             android:id="@+id/action_PDP_to_colorSelectionFragment"
-            app:destination="@id/colorsFragment" />
+            app:destination="@id/colorSelectionFragment" />
     </fragment>
     <dialog
         android:id="@+id/sizeSelectionFragment"
@@ -63,7 +63,7 @@
             app:argType="string[]" />
     </dialog>
     <dialog
-        android:id="@+id/colorsFragment"
+        android:id="@+id/colorSelectionFragment"
         android:name="com.maxshop.fragment.ColorSelectionFragment"
         android:label="ColorsFragment"
         tools:layout="@layout/fragment_color_selection">

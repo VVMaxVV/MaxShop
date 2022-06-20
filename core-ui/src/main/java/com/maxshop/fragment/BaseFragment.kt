@@ -8,7 +8,7 @@ import com.maxshop.viewModel.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-abstract class BaseFragment : DaggerFragment() {
+open class BaseFragment : DaggerFragment() {
 
     @Inject
     protected lateinit var factory: ViewModelFactory
@@ -21,6 +21,13 @@ abstract class BaseFragment : DaggerFragment() {
     }
 
     open fun getBottomNavVisibility(): Boolean = true
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (this is HasLifeCycleObserver) {
+            addLifecycleObserver()
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

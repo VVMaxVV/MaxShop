@@ -1,7 +1,9 @@
 package com.maxshop.viewModel
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.maxshop.mapper.SimplifiedProductMapper
 import com.maxshop.model.RecyclerItem
 import com.maxshop.model.TypeSort
@@ -19,7 +21,9 @@ internal class ProductsListViewModel @Inject constructor(
     private val getProductsCategory: GetProductsCategoryUseCase,
     private val simplifiedProductMapper: SimplifiedProductMapper,
     private val sortStream: SortStream
-) : BaseViewModel() {
+) : BaseLifecycleViewModel() {
+    var category: String? = null
+
     private val _productsList = MutableLiveData<List<RecyclerItem>>()
     val productsList: LiveData<List<RecyclerItem>> get() = _productsList
 
@@ -31,9 +35,14 @@ internal class ProductsListViewModel @Inject constructor(
     private val _sort = MutableLiveData<TypeSort>()
     val sort: LiveData<TypeSort> get() = _sort
 
-    var categoryName: String? = null
+    val refreshListener = SwipeRefreshLayout.OnRefreshListener { getProducts() }
 
-    fun getActiveSort() {
+    override fun onCreate(owner: LifecycleOwner) {
+        super.onCreate(owner)
+        getActiveSort()
+    }
+
+    private fun getActiveSort() {
         compositeDisposable += sortStream.value.stream()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
@@ -44,9 +53,12 @@ internal class ProductsListViewModel @Inject constructor(
             )
     }
 
-    fun getProducts() {
-        categoryName?.let { name ->
-            compositeDisposable += getProductsCategory.execute(name, sort.value ?: TypeSort.Popular)
+    private fun getProducts() {
+        category?.let {
+            compositeDisposable += getProductsCategory.execute(
+                it,
+                sort.value ?: TypeSort.Popular
+            )
                 .subscribeOn(Schedulers.io())
                 .map {
                     it.map {
