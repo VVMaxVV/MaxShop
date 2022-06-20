@@ -11,19 +11,20 @@ import com.maxshop.model.TypeSort
 import com.maxshop.shop_ui.databinding.FragmentProductsListBinding
 import com.maxshop.viewModel.ProductsListViewModel
 
-internal class ProductsListFragment : BaseFragment() {
+internal class ProductsListFragment : BaseFragment(), HasLifeCycleObserver {
     private val args: ProductsListFragmentArgs by navArgs()
 
     private var binding: FragmentProductsListBinding? = null
 
     private val viewModel: ProductsListViewModel by viewModels { factory }
 
-    override fun addLifecyclerObserver() {
-        lifecycle.addObserver(
-            viewModel.also {
-                it.category = args.category
-            }
-        )
+    override fun addLifecycleObserver() {
+        lifecycle.addObserver(viewModel)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        viewModel.category = args.category
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(

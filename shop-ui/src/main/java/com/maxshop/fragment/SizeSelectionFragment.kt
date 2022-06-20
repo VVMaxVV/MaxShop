@@ -10,18 +10,18 @@ import androidx.navigation.fragment.navArgs
 import com.maxshop.shop_ui.databinding.FragmentSizeSelectionBinding
 import com.maxshop.viewModel.SizeSelectionViewModel
 
-internal class SizeSelectionFragment : BaseBottomSheetFragment() {
+internal class SizeSelectionFragment : BaseBottomSheetFragment(), HasLifeCycleObserver {
     private val args: SizeSelectionFragmentArgs by navArgs()
 
     val viewModel: SizeSelectionViewModel by viewModels { factory }
 
-    override fun addLifecyclerObserver() {
-        super.addLifecyclerObserver()
-        lifecycle.addObserver(
-            viewModel.also {
-                it.sizesList = args.sizes.toList()
-            }
-        )
+    override fun addLifecycleObserver() {
+        lifecycle.addObserver(viewModel)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        viewModel.sizesList = args.sizes.toList()
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(

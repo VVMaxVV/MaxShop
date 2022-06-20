@@ -20,7 +20,7 @@ internal class SortsViewModel @Inject constructor(
     private val getSortsUseCase: GetSortsUseCase,
     private val sortMapper: SortMapper,
     private val sortStream: SortStream
-) : BaseLifecyclerViewModel() {
+) : BaseLifecycleViewModel() {
     var activePosition = 0
     var activeSort: TypeSort = TypeSort.Popular
 

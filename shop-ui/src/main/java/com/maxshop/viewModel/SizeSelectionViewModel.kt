@@ -16,7 +16,7 @@ import javax.inject.Inject
 internal class SizeSelectionViewModel @Inject constructor(
     private val sizeMapper: SizeMapper,
     private val sizeStream: SizeStream
-) : BaseLifecyclerViewModel() {
+) : BaseLifecycleViewModel() {
     sealed class Event {
         object Close : Event()
     }

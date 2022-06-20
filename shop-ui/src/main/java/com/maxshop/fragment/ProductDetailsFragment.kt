@@ -10,7 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.maxshop.shop_ui.databinding.FragmentProductDetailsBinding
 import com.maxshop.viewModel.ProductDetailsViewModel
 
-internal class ProductDetailsFragment : BaseFragment() {
+internal class ProductDetailsFragment : BaseFragment(), HasLifeCycleObserver {
     private val args: ProductDetailsFragmentArgs by navArgs()
 
     private var binding: FragmentProductDetailsBinding? = null
@@ -19,13 +19,13 @@ internal class ProductDetailsFragment : BaseFragment() {
 
     override fun getBottomNavVisibility(): Boolean = false
 
-    override fun addLifecyclerObserver() {
-        super.addLifecyclerObserver()
-        lifecycle.addObserver(
-            viewModel.also {
-                it.id = args.id
-            }
-        )
+    override fun addLifecycleObserver() {
+        lifecycle.addObserver(viewModel)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        viewModel.id = args.id
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(

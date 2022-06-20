@@ -105,6 +105,9 @@ internal class ProductsListViewModelTest {
         every {
             simplifiedProductMapper.toPLPItemViewState(any())
         }.returns(viewState)
+        every {
+            sortStream.value.stream()
+        }.returns(Observable.just(mockk()))
         val viewModel = getViewModel()
         viewModel.category = ""
         val testObserver = viewModel.event.test()
@@ -138,6 +141,9 @@ internal class ProductsListViewModelTest {
         every {
             simplifiedProductMapper.toPLPItemViewState(any())
         }.returns(viewState)
+        every {
+            sortStream.value.stream()
+        }.returns(Observable.just(mockk()))
         val viewModel = getViewModel()
         viewModel.category = ""
         val testObserver = viewModel.event.test()
@@ -158,8 +164,11 @@ internal class ProductsListViewModelTest {
         // GIVEN
         val category = ""
         every {
-            getProductsCategoryUseCase.execute(category, TypeSort.Popular)
+            getProductsCategoryUseCase.execute(any(), any())
         }.returns(Single.just(listOf(mockk())))
+        every {
+            sortStream.value.stream()
+        }.returns(Observable.just(mockk()))
         val viewModel = getViewModel()
         viewModel.category = category
         lifecycle.addObserver(viewModel)
@@ -176,8 +185,12 @@ internal class ProductsListViewModelTest {
         // GIVEN
         val category = ""
         every {
-            getProductsCategoryUseCase.execute(category, TypeSort.Popular)
+            getProductsCategoryUseCase.execute(any(), any())
         }.returns(Single.error(mockk<Throwable>()))
+        every {
+            sortStream.value.stream()
+        }.returns(Observable.just(mockk()))
+
         val viewModel = getViewModel()
         viewModel.category = category
         val observer = viewModel.event.test()
@@ -197,8 +210,11 @@ internal class ProductsListViewModelTest {
         // GIVEN
         val category = ""
         every {
-            getProductsCategoryUseCase.execute(category, TypeSort.Popular)
+            getProductsCategoryUseCase.execute(any(), any())
         }.returns(Single.just(mockk()))
+        every {
+            sortStream.value.stream()
+        }.returns(Observable.just(mockk()))
         val viewModel = getViewModel()
         viewModel.category = category
         viewModel.progressBar.observeForever(progressBar)

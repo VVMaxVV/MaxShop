@@ -10,18 +10,18 @@ import androidx.navigation.fragment.navArgs
 import com.maxshop.shop_ui.databinding.FragmentColorSelectionBinding
 import com.maxshop.viewModel.ColorSelectionViewModel
 
-internal class ColorSelectionFragment : BaseBottomSheetFragment() {
+internal class ColorSelectionFragment : BaseBottomSheetFragment(), HasLifeCycleObserver {
     private val args: ColorSelectionFragmentArgs by navArgs()
 
     val viewModel: ColorSelectionViewModel by viewModels { factory }
 
-    override fun addLifecyclerObserver() {
-        super.addLifecyclerObserver()
-        lifecycle.addObserver(
-            viewModel.also {
-                it.colorsList = args.colors.toList()
-            }
-        )
+    override fun addLifecycleObserver() {
+        lifecycle.addObserver(viewModel)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        viewModel.colorsList = args.colors.toList()
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(

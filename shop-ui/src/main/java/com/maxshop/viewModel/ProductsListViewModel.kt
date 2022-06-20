@@ -21,7 +21,7 @@ internal class ProductsListViewModel @Inject constructor(
     private val getProductsCategory: GetProductsCategoryUseCase,
     private val simplifiedProductMapper: SimplifiedProductMapper,
     private val sortStream: SortStream
-) : BaseLifecyclerViewModel() {
+) : BaseLifecycleViewModel() {
     var category: String? = null
 
     private val _productsList = MutableLiveData<List<RecyclerItem>>()
@@ -35,11 +35,10 @@ internal class ProductsListViewModel @Inject constructor(
     private val _sort = MutableLiveData<TypeSort>()
     val sort: LiveData<TypeSort> get() = _sort
 
-    val refreshListener = SwipeRefreshLayout.OnRefreshListener { category?.let { getProducts(it) } }
+    val refreshListener = SwipeRefreshLayout.OnRefreshListener { getProducts() }
 
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
-        category?.let { getProducts(it) }
         getActiveSort()
     }
 
@@ -49,36 +48,41 @@ internal class ProductsListViewModel @Inject constructor(
             .subscribeBy(
                 onNext = {
                     _sort.value = it
-                    category?.let { it -> getProducts(it) }
+                    getProducts()
                 }
             )
     }
 
-    private fun getProducts(category: String) {
-        compositeDisposable += getProductsCategory.execute(category, sort.value ?: TypeSort.Popular)
-            .subscribeOn(Schedulers.io())
-            .map {
-                it.map {
-                    simplifiedProductMapper.toPLPItemViewState(it).also {
-                        compositeDisposable += it.events.subscribe {
-                            onPLPItemViewStateEvent(it)
+    private fun getProducts() {
+        category?.let {
+            compositeDisposable += getProductsCategory.execute(
+                it,
+                sort.value ?: TypeSort.Popular
+            )
+                .subscribeOn(Schedulers.io())
+                .map {
+                    it.map {
+                        simplifiedProductMapper.toPLPItemViewState(it).also {
+                            compositeDisposable += it.events.subscribe {
+                                onPLPItemViewStateEvent(it)
+                            }
                         }
                     }
                 }
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { progressBar.value = true }
-            .doFinally { progressBar.value = false }
-            .subscribeBy(
-                onSuccess = {
-                    _productsList.value = it.map {
-                        simplifiedProductMapper.toRecyclerItem(it)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { progressBar.value = true }
+                .doFinally { progressBar.value = false }
+                .subscribeBy(
+                    onSuccess = {
+                        _productsList.value = it.map {
+                            simplifiedProductMapper.toRecyclerItem(it)
+                        }
+                    },
+                    onError = {
+                        _event.value = Event.OnError(it)
                     }
-                },
-                onError = {
-                    _event.value = Event.OnError(it)
-                }
-            )
+                )
+        }
     }
 
     fun showSorts() {

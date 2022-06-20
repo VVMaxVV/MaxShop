@@ -15,7 +15,7 @@ import javax.inject.Inject
 internal class ColorSelectionViewModel @Inject constructor(
     private val colorMapper: ColorMapper,
     private val colorStream: ColorStream
-) : BaseLifecyclerViewModel() {
+) : BaseLifecycleViewModel() {
     sealed class Event {
         object Close : Event()
     }

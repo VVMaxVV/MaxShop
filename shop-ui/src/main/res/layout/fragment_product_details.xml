@@ -43,7 +43,7 @@
                 android:layout_marginHorizontal="@dimen/normal_100"
                 android:layout_marginTop="@dimen/normal_100"
                 android:gravity="center"
-                android:onClick="@{viewModel.listenerButtonRefresh}"
+                android:onClick="@{(v)->viewModel.getProduct()}"
                 android:text="@string/label_try_again" />
 
 

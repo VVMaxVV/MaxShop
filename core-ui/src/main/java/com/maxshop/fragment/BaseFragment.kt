@@ -22,11 +22,11 @@ open class BaseFragment : DaggerFragment() {
 
     open fun getBottomNavVisibility(): Boolean = true
 
-    open fun addLifecyclerObserver() {}
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        addLifecyclerObserver()
+        if (this is HasLifeCycleObserver) {
+            addLifecycleObserver()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

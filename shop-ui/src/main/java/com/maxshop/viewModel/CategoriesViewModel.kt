@@ -18,7 +18,7 @@ import javax.inject.Inject
 internal class CategoriesViewModel @Inject constructor(
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val categoryMapper: CategoryMapper
-) : BaseLifecyclerViewModel() {
+) : BaseLifecycleViewModel() {
     private val _events = SingleLiveEvent<Event>()
     val events: LiveData<Event> get() = _events
 

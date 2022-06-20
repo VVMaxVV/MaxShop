@@ -255,7 +255,7 @@ internal class ProductDetailsViewModelTest {
                 getProductUseCase.execute(any())
             }
         }.returns(product)
-        viewModel.listenerButtonRefresh.onClick(mockk())
+        viewModel.getProduct()
 
         // THEN
         verifyOrder {

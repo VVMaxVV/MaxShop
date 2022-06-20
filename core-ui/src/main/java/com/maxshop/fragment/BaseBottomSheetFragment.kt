@@ -19,11 +19,11 @@ open class BaseBottomSheetFragment : BottomSheetDialogFragment() {
         Toast.makeText(requireContext(), text, duration).show()
     }
 
-    open fun addLifecyclerObserver() {}
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        addLifecyclerObserver()
+        if (this is HasLifeCycleObserver) {
+            addLifecycleObserver()
+        }
     }
 
     override fun onAttach(context: Context) {
