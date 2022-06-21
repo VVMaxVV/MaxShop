@@ -20,11 +20,13 @@ internal class ProductsListViewModel @Inject constructor(
     private val simplifiedProductMapper: SimplifiedProductMapper,
     private val sortStream: SortStream
 ) : BaseViewModel() {
-    private val _productsList = MutableLiveData<List<RecyclerItem>>()
-    val productsList: LiveData<List<RecyclerItem>> get() = _productsList
+    private val _productsList = MutableLiveData<List<RecyclerItem?>>()
+    val productsList: LiveData<List<RecyclerItem?>> get() = _productsList
 
     private val _event = SingleLiveEvent<Event>()
     val event: LiveData<Event> get() = _event
+
+    val isClickChangeLayoutManager = MutableLiveData(false)
 
     val progressBar = MutableLiveData<Boolean>()
 
@@ -63,7 +65,10 @@ internal class ProductsListViewModel @Inject constructor(
                 .subscribeBy(
                     onSuccess = {
                         _productsList.value = it.map {
-                            simplifiedProductMapper.toRecyclerItem(it)
+                            simplifiedProductMapper.toRecyclerItem(
+                                it,
+                                isClickChangeLayoutManager.value?.not() ?: true
+                            )
                         }
                     },
                     onError = {
@@ -75,6 +80,19 @@ internal class ProductsListViewModel @Inject constructor(
 
     fun showSorts() {
         _event.value = Event.ShowSorts
+    }
+
+    fun changeLayoutManager() {
+        isClickChangeLayoutManager.value?.let { isClick ->
+            _productsList.value?.map {
+                (it?.data as? PLPItemViewState)?.let {
+                    simplifiedProductMapper.toRecyclerItem(it, !isClick)
+                }
+            }.also {
+                _productsList.value = it
+            }
+        }
+        _event.value = Event.ChangeLayoutManager
     }
 
     private fun onPLPItemViewStateEvent(event: PLPItemViewState.Event) {
@@ -92,6 +110,7 @@ internal class ProductsListViewModel @Inject constructor(
         data class OpenProduct(val id: Int, val title: String) : Event()
         data class FavoriteOnClicked(val id: Int, val stateIsFavorite: Boolean?) : Event()
         data class OnError(val throwable: Throwable, val description: String? = null) : Event()
+        object ChangeLayoutManager : Event()
         object ShowSorts : Event()
     }
 }

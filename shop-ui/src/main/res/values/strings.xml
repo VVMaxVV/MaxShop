@@ -14,4 +14,5 @@
     <string name="pdp_image_dimension_ratio">H,15:11</string>
     <string name="label_error_has_occurred">An error has occurred</string>
     <string name="label_try_again">Try again</string>
+    <string name="ratio_plp_image">160:180</string>
 </resources>

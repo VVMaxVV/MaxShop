@@ -12,7 +12,9 @@ internal class DiffCallback : DiffUtil.ItemCallback<RecyclerItem>() {
     ): Boolean {
         val oldData = oldItem.data
         val newData = newItem.data
-        return if (oldData is RecyclerItemComparator && newData is RecyclerItemComparator
+        if (oldItem.layoutId != newItem.layoutId) return false
+        return if (oldData is RecyclerItemComparator &&
+            newData is RecyclerItemComparator
         ) {
             oldData.isSameItem(newData)
         } else oldData == newData

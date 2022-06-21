@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="product"
+            name="viewState"
             type="com.maxshop.viewState.PLPItemViewState" />
     </data>
 
@@ -30,14 +30,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:onClick="@{()->product.onClick(product)}">
+                android:onClick="@{()->viewState.onClick(viewState)}">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/productImage"
                     android:layout_width="@dimen/normal_650"
                     android:layout_height="0dp"
+                    android:src="@{viewState.imageUrl}"
                     app:layout_constraintDimensionRatio="1:1"
-                    android:src="@{product.imageUrl}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@color/colorBlack" />
@@ -51,7 +51,7 @@
                     android:layout_marginTop="@dimen/normal_75"
                     android:ellipsize="end"
                     android:lines="2"
-                    android:text="@{product.title}"
+                    android:text="@{viewState.title}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/productImage"
                     app:layout_constraintTop_toTopOf="@id/productImage"
@@ -63,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:rating="@{product.rating}"
+                    android:rating="@{viewState.rating}"
                     app:layout_constraintStart_toStartOf="@+id/title"
                     app:layout_constraintTop_toBottomOf="@+id/title"
                     tools:rating="3.7" />
@@ -73,7 +73,7 @@
                     style="@style/Regular_12sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/review_counter(product.ratingCount)}"
+                    android:text="@{@string/review_counter(viewState.ratingCount)}"
                     android:textColor="@color/colorGray"
                     app:layout_constraintBottom_toBottomOf="@+id/rating_bar"
                     app:layout_constraintStart_toEndOf="@+id/rating_bar"
@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/normal_50"
-                    android:text="@{@string/price(product.price)}"
+                    android:text="@{@string/price(viewState.price)}"
                     app:layout_constraintStart_toStartOf="@+id/rating_bar"
                     app:layout_constraintTop_toBottomOf="@+id/rating_bar"
                     tools:text="11$" />
@@ -98,8 +98,8 @@
             style="@style/ToggleFavorite"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/normal_100"
-            android:checked="@{product.favorite}"
+            android:checked="@{viewState.favorite}"
             android:elevation="@dimen/normal_200"
-            android:onClick="@{()->product.onFavoriteClick(product)}" />
+            android:onClick="@{()->viewState.onFavoriteClick(viewState)}" />
     </FrameLayout>
 </layout>

@@ -21,11 +21,14 @@ internal class SimplifiedProductMapper @Inject constructor() {
         )
     }
 
-    fun toRecyclerItem(productViewState: PLPItemViewState): RecyclerItem {
+    fun toRecyclerItem(
+        productViewState: PLPItemViewState,
+        linearLayoutManager: Boolean = true
+    ): RecyclerItem {
         return RecyclerItem(
             productViewState,
-            R.layout.item_product_list,
-            BR.product
+            if (linearLayoutManager) R.layout.item_product_list_linear else R.layout.item_product_list_grid,
+            BR.viewState
         )
     }
 }
