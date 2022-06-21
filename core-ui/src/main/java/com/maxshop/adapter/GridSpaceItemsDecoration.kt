@@ -22,9 +22,10 @@ class GridSpaceItemsDecoration(
 
         val position = parent.getChildLayoutPosition(view)
 
-        val manager = parent.layoutManager as GridLayoutManager?
+        (parent.layoutManager as? GridLayoutManager)?.let {
+            if (position >= it.spanCount) outRect.top = verticalSpacing
+        }
 
-        if (position >= manager!!.spanCount) outRect.top = verticalSpacing
         outRect.left = horizontalSpacing
         outRect.right = horizontalSpacing
     }

@@ -40,9 +40,12 @@
                 tools:text="Price: lowest to high" />
 
             <ToggleButton
+                android:id="@+id/change_layout_manager_button"
                 style="@style/ToggleChangeDisplayItems"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/normal_12" />
+                android:layout_marginStart="@dimen/normal_12"
+                android:checked="@={viewModel.isClickChangeLayoutManager()}"
+                android:onClick="@{()->viewModel.changeLayoutManager()}" />
         </LinearLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -54,12 +57,11 @@
             tools:background="@color/colorBackground">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
                 items="@{viewModel.productsList}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:addItemDecoration="@{Decorations.spaces(@dimen/normal_100, true)}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_product_list" />
+                tools:listitem="@layout/item_product_list_linear" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 </layout>

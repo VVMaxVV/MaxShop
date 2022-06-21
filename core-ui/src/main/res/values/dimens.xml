@@ -52,6 +52,8 @@
 
     <dimen name="normal_875">140dp</dimen>
 
+    <dimen name="normal_1000">160dp</dimen>
+
     <dimen name="normal_1250">200dp</dimen>
 
     <dimen name="sp_normal_0">0sp</dimen>
